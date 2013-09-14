@@ -1,0 +1,2 @@
+django==1.4.6
+gunicorn==0.17.4
