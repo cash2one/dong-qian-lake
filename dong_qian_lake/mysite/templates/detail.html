@@ -1,0 +1,286 @@
+<html>
+<head>
+<meta charset="UTF-8"/>
+<title>{{project.project_name}}</title>
+<link rel="stylesheet" href="http://www.dqlake.gov.cn/zdgc/images/css.css" />
+<link rel="stylesheet" href="http://www.dqlake.gov.cn/zdgc/images/bgchange.css" />
+<style type="text/css">
+</style>
+</head>
+<body>
+<div>
+    <table align="center" border="0px" cellpadding="0px" cellspacing="0px">
+        <tr>
+            <td>
+                <img src="http://www.dqlake.gov.cn/zdgc/images/top.jpg" alt="" />
+            </td>
+        </tr>
+    </table>
+    <table width="1002" height="35" align="center" border="0" cellpadding="0" cellspacing="0" bgcolor="#2867b5">
+        <tbody><tr>
+            <td>
+                <table width="680" height="35" align="center" border="0" cellpadding="0" cellspacing="0">
+                    <tbody><tr style="font-size:0px;">
+                        <td width="65" align="center" class="top_font">
+                            <a href="index.aspx">首页</a>
+                        </td>
+                        <td width="20" class="top_font" align="center">
+                            |
+                        </td>
+                        <td width="65" align="center" class="top_font">
+                            <a href="newslist.aspx?NodeCode=100010009000210001">组织机构</a>
+                        </td>
+                        <td width="20" class="top_font" align="center">
+                            |
+                        </td>
+                        <td width="65" align="center" class="top_font">
+                            <a href="newslist.aspx?NodeCode=1000100090002100020001">项目信息</a>
+                        </td>
+                        <td width="20" class="top_font" align="center">
+                            |
+                        </td>
+                        <td width="65" align="center" class="top_font">
+                            <a href="newslist.aspx?NodeCode=1000100090002100030002">招标投标</a>
+                        </td>
+                        <td width="20" class="top_font" align="center">
+                            |
+                        </td>
+                        <td width="65" align="center" class="top_font">
+                            <a href="newslist.aspx?NodeCode=1000100090002100040001">信用信息</a>
+                        </td>
+                        <td width="20" class="top_font" align="center">
+                            |
+                        </td>
+                        <td width="65" align="center" class="top_font">
+                            <a href="newslist.aspx?NodeCode=100010009000210005">工作动态</a>
+                        </td>
+                        <td width="20" class="top_font" align="center">
+                            |
+                        </td>
+                        <td width="65" align="center" class="top_font">
+                            <a href="newslist.aspx?NodeCode=100010009000210006">政策法规</a>
+                        </td>
+                        <td width="20" class="top_font" align="center">
+                            |
+                        </td>
+                        <td width="65" align="center" class="top_font">
+                            <a href="http://www.dqlake.gov.cn/hdjl/" target="_blank">咨询投诉</a>
+                        </td>
+                        <td width="20" class="top_font" align="center">
+                            |
+                        </td>
+                    </tr>
+                </tbody></table>
+            </td>
+            <td width="22">
+            </td>
+            <td>
+                <table width="300" height="35" align="center" border="0" cellpadding="0" cellspacing="0">
+                    <tbody><tr>
+                        <td class="top2_font">
+                            全文搜索
+                        </td>
+                        <td align="center">
+                            <input name="ctl00$txtSearch" type="text" id="ctl00_txtSearch" style="width:120px;">
+                        </td>
+                        <td>
+                            <input type="button" onclick="Search()" class="searchbtn">
+                        </td>
+                    </tr>
+                </tbody></table>
+            </td>
+        </tr>
+    </tbody></table>
+    <table width="1002" height="10" align="center" border="0" cellpadding="0" cellspacing="0" bgcolor="#ffffff">
+        <tbody><tr>
+            <td>
+            </td>
+        </tr>
+    </tbody></table>
+    <table align="center" border="0" cellpadding="0" cellspacing="0" width="1002" bgcolor="#FFFFFF">
+        <tbody><tr>
+            <td align="center" valign="top">
+                <table width="100%" height="16" border="0" cellspacing="0" cellpadding="0">
+                    <tbody><tr>
+                        <td>
+                        </td>
+                    </tr>
+                </tbody></table>
+                <table width="1002" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#FFFFFF">
+                    <tbody><tr>
+                        <td align="center" valign="top">
+                            <table width="96%" height="60" border="0" cellpadding="0" cellspacing="0" align="center">
+                                <tbody><tr>
+                                    <td align="center" class="dh2_font" style="font-size:16px;">
+                                        <span id="ctl00_ContentPlaceHolder1_lblTitle">
+                                            {{project.project_name}}
+                                        </span>
+                                    </td>
+                                </tr>
+                            </tbody></table>
+                            <table width="95%" height="25" border="0" cellpadding="0" cellspacing="0" align="center" bgcolor="#fefcf5">
+                                <tbody>
+                                    <tr>
+                                        <td class="content_font" align="center">
+<!--                                            <a onclick="Zoom.style.fontSize='15pt';Javascript:return false;" href="#">大</a>-->
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <table width="95%" height="1" border="0" cellspacing="0" cellpadding="0" bgcolor="#999999" align="center">
+                                <tbody><tr>
+                                    <td>
+                                    </td>
+                                </tr>
+                            </tbody></table>
+                            <table width="95%" height="12" border="0" cellspacing="0" cellpadding="0" align="center">
+                                <tbody><tr>
+                                    <td>
+                                    </td>
+                                </tr>
+                            </tbody></table>
+                            <div id="bgchange" style="width: 933px;">
+                                <table width="95%" height="450" border="0" cellspacing="0" cellpadding="0" align="center">
+                                    <tbody><tr>
+                                        <td align="center" valign="top">
+                                            <!--<$[信息内容]>begin-->
+                                            <!--ZJEG_RSS.content.begin-->
+                                            <div class="newsfile02">
+                                                <table width="95%" height="15" border="0" cellspacing="0" cellpadding="0" align="center">
+                                                    <tbody><tr>
+                                                        <td>
+                                                            <div id="ctl00_ContentPlaceHolder1_divImgs"><center></center></div>
+                                                        </td>
+                                                    </tr>
+                                                </tbody></table>
+                                                <table width="95%" border="0" cellpadding="0" cellspacing="0" align="center">
+                                                    <tbody>
+                                                        <tr>
+                                                            <td align="left" valign="top" class="content14" style="padding: 0; margin: 0; font-family: '宋体' , arial, verdana, sans-serif;">
+                                                                <div id="Zoom">
+                                                                    <span id="ctl00_ContentPlaceHolder1_lblContent"><table width="98%" align="center"><tbody><tr><td class="bt_content" align="left">
+                                                                    <p>
+                                                                    项目名称：
+                                                                    <span>{{project.project_name}}</span>
+                                                                    </p>
+                                                                    <p>
+                                                                    区块分类：
+                                                                    <span>{{project.area}}</span>
+                                                                    </p>
+                                                                    <p>
+                                                                    投资主体：
+                                                                    <span>{{project.invest_subject}}</span>
+                                                                    </p>
+                                                                    <p>
+                                                                    项目进度：
+                                                                    <span>{{project.project_schedule}}</span>
+                                                                    </p>
+                                                                    <p>
+                                                                    项目类型：
+                                                                    <span>{{project.project_type}}</span>
+                                                                    </p>
+                                                                    <p>
+                                                                    总投资：
+                                                                    <span>{{project.total_invest}}</span>
+                                                                    </p>
+                                                                    <p>
+                                                                    2012年计划建设投资：
+                                                                    <span>{{project.planed_invest}}</span>
+                                                                    </p>
+                                                                    <p>
+                                                                    2012年已完成投资：
+                                                                    <span>{{project.completed_invest}}</span>
+                                                                    </p>
+                                                                    <p>
+                                                                    资金来源：
+                                                                    <span>{{project.funds_source}}</span>
+                                                                    </p>
+                                                                    <p>
+                                                                    开工时间：
+                                                                    <span>{{project.start_time}}</span>
+                                                                    </p>
+                                                                    <p>
+                                                                    竣工时间：
+                                                                    <span>{{project.completed_time}}</span>
+                                                                    </p>
+                                                                    <p>
+                                                                    牵头委领导：
+                                                                    <span>{{project.leader}}</span>
+                                                                    </p>
+                                                                    <p>
+                                                                    建设单位或牵头单位：
+                                                                    <span>{{project.build_unit}}</span>
+                                                                    </p>
+                                                                    <p>
+                                                                    项目推进情况：
+                                                                    <span>{{project.project_information}}</span>
+                                                                    </p>
+                                                                    <p>
+                                                                    存在问题：
+                                                                    <span>{{project.problem}}</span>
+                                                                    </p>
+                                                                    <p>
+                                                                    备注：
+                                                                    <span>{{project.remark}}</span>
+                                                                    </p>
+                                                                    <p></p>
+                                                                    
+                                                    </td></tr></tbody></table></span>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                                <table width="95%" height="30" border="0" cellspacing="0" cellpadding="0">
+                                                    <tbody><tr>
+                                                        <td>
+                                                            &nbsp;
+                                                        </td>
+                                                    </tr>
+                                                </tbody></table>
+                                                
+                                                <table width="95%" height="20" border="0" cellspacing="0" cellpadding="0">
+                                                    <tbody><tr>
+                                                        <td>
+                                                            &nbsp;
+                                                        </td>
+                                                    </tr>
+                                                </tbody></table>
+                                            </div>
+                                            <!--ZJEG_RSS.content.end-->
+                                            <!--<$[信息内容]>end-->
+                                        </td>
+                                    </tr>
+                                </tbody></table>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody></table>
+                <table width="98%" height="20" border="0" cellspacing="0" cellpadding="0" align="center">
+                    <tbody><tr>
+                        <td>
+                            &nbsp;
+                        </td>
+                    </tr>
+                </tbody></table>
+            </td>
+        </tr>
+    </tbody></table>
+    <table align="center" width="1002" height="2" border="0" cellpadding="0" cellspacing="0" bgcolor="#2867b5">
+        <tbody><tr>
+            <td>
+            </td>
+        </tr>
+    </tbody></table>
+    <table width="1002" align="center" height="120" border="0" cellpadding="0" cellspacing="0" bgcolor="#f8f8f8">
+        <tbody><tr>
+            <td align="center" class="content_font">
+                中国宁波东钱湖旅游度假区管委会主办<br>
+                版权所有:中国宁波东钱湖旅游度假区管委会 ICP:05072411号
+            </td>
+        </tr>
+    </tbody></table>
+
+</div>
+</body>
+</html>
