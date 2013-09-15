@@ -124,6 +124,7 @@ INSTALLED_APPS = (
     # Uncomment the next line to enable the admin:
      'django.contrib.admin',
      'mysite',
+     'storages',
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
 )
@@ -156,3 +157,13 @@ LOGGING = {
         },
     }
 }
+
+STATICFILES_STORAGE  = 'storages.backends.oss.OSSStorage'
+DEFAULT_FILE_STORAGE = 'storages.backends.oss.OSSStorage'
+
+OSS_STORAGE_BUCKET_NAME = 'oss-storage'
+OSS_ACCESS_KEY_ID = 'skgKAqCZZ6ig6bpR'
+OSS_ACCESS_KEY_SECRET = 'RwkMAYQzg6ZUpq8WoYJNA14hmt1Ped'
+
+STATIC_URL = 'http://%s.oss.aliyuncs.com/' % OSS_STORAGE_BUCKET_NAME
+ADMIN_MEDIA_PREFIX = STATIC_URL + 'admin/'
