@@ -223,7 +223,11 @@
                                                                     备注：
                                                                     <span>{{project.remark}}</span>
                                                                     </p>
-                                                                    <p></p>
+                                                                    {% if project.photo %}
+                                                                    <p>
+                                                                    <img src="{{project.photo.url}}" width="800px" alt="" />
+                                                                    </p>
+                                                                    {% endif %}
                                                                     
                                                     </td></tr></tbody></table></span>
                                                                 </div>

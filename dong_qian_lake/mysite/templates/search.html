@@ -158,11 +158,24 @@
                                                         </tr>
                                                         <tr>
                                                             <td>项目年限：</td>
-                                                            <td><input type="text" name="date_from"></td>
+                                                            <td>
+                                                                <select id="date_from" name="date_from">
+                                                                    <option value="">不限</option>
+                                                                    {% for year in year_list %}
+                                                                    <option value="{{year}}">{{year}}</option>
+                                                                    {% endfor %}
+                                                                </select>
+                                                            </td>
                                                         </tr>
                                                         <tr>
                                                             <td>到</td>
-                                                            <td><input type="text" name="date_to" >
+                                                            <td>
+                                                                <select id="date_to" name="date_to">
+                                                                    <option value="">不限</option>
+                                                                    {% for year in year_list %}
+                                                                    <option value="{{year}}">{{year}}</option>
+                                                                    {% endfor %}
+                                                                </select>
                                                             </td>
                                                         </tr>
                                                         <tr>
@@ -249,13 +262,13 @@
                                                                 <div id="ctl00_ContentPlaceHolder1_AspNetPager1" style="height:12px;">
                                                                     <!--    <a disabled="true" style="margin-right:5px;">首页</a>-->
                                                                     {% if query_list.has_previous %}
-                                                                    <a href="?page={{query_list.previous_page_number}}"  style="margin-right:5px;">上一页</a>
+                                                                    <a href="{{url}}&page={{query_list.previous_page_number}}"  style="margin-right:5px;">上一页</a>
                                                                     {% else %}
                                                                     <a disabled="true" style="margin-right:5px;">上一页</a>
                                                                     {% endif %}
                                                                     <span style="margin-right:5px;font-weight:Bold;color:red;">{{query_list.paginator.number}}</span>
                                                                     {% if query_list.has_next %}
-                                                                    <a href="?page={{query_list.next_page_number}}" style="margin-right:5px;">下一页</a>
+                                                                    <a href="{{url}}&page={{query_list.next_page_number}}" style="margin-right:5px;">下一页</a>
                                                                     {% else %}
                                                                     <a disabled="true" style="margin-right:5px;">下一页</a>
                                                                     {% endif %}

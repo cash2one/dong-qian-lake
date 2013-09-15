@@ -21,6 +21,9 @@ class Project(models.Model):
     project_information = models.TextField(blank=True)
     problem = models.TextField(blank=True)
     remark = models.TextField(blank=True)
+    
+    photo = models.FileField(upload_to='dong-qian-lake',blank=True,null=True)
+
 
     def __unicode__(self):
         return self.project_name

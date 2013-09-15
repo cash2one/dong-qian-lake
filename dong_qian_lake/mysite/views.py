@@ -5,6 +5,7 @@ from django.shortcuts import render_to_response
 from models import Project
 from django.template import Context,RequestContext
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from datetime import datetime
 
 def project_search_view(request):
     page = request.GET.get('page','1') 
@@ -36,8 +37,16 @@ def project_search_view(request):
         projects = paginator.page(1)
     except EmptyPage:
         projects = paginator.page(paginator.num_pages)
+
+    year = datetime.now().year
     
-    return my_render_to_response(request,'search.html',{'query_list':projects})
+    year_list = []
+    for i in range(year,1999,-1):
+        year_list.append(i)
+
+    url = request.get_full_path()
+
+    return my_render_to_response(request,'search.html',{'query_list':projects,'year_list':year_list,'url':url})
 
 def my_render_to_response(request,template,data_dict={}):
     return render_to_response(template,data_dict,context_instance=RequestContext(request))
