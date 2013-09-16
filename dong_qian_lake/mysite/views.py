@@ -1,19 +1,30 @@
 # coding=UTF-8
 # Create your views here.
 from django.http import HttpResponse
-from django.shortcuts import render_to_response
+from django.shortcuts import render_to_response,redirect
 from models import Project
 from django.template import Context,RequestContext
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from datetime import datetime
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth import logout,login
 
+def login_view(request):
+    if not request.user.is_authenticated():
+        return redirect('/login/?next=search')
+
+def logout_view(request):
+    logout(request)
+    return redirect('/search')
+
+@login_required
 def project_search_view(request):
     page = request.GET.get('page','1') 
     name = request.GET.get('project_name','')
     schedule = request.GET.get('project_schedule','')
     date_from = request.GET.get('date_from','')
     date_to = request.GET.get('date_to','')
-    
+    invest_subject = request.GET.get('invest_subject','') 
     query_list = Project.objects.all()
     
     if name:
@@ -28,6 +39,9 @@ def project_search_view(request):
 
     if date_to:
         query_list = query_list.filter(completed_time__contains=date_to)
+
+    if invest_subject:
+        query_list = query_list.filter(invest_subject__contains=invest_subject)
     
     paginator = Paginator(query_list,20)
 

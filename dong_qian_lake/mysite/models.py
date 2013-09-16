@@ -1,5 +1,8 @@
 # coding=UTF-8
 from django.db import models
+from datetime import datetime
+
+
 
 # Create your models here.
 class Project(models.Model):
@@ -32,4 +35,38 @@ class Project(models.Model):
     def __unicode__(self):
         return self.project_name
 
+class ProjectProgress(models.Model):
 
+    def get_year_list():
+        year = datetime.now().year
+        year_list = []
+        for i in range(year,1999,-1):
+            year_list.append((str(i),str(i)))
+        return year_list
+    def get_month_list():
+        month_list = []
+        for i in range(1,13):
+            month_list.append((str(i),str(i)))
+        return month_list
+    YEAR_LIST = get_year_list()
+    CURRENT_YEAR = str(datetime.now().year)
+    MONTH_LIST = get_month_list() 
+
+    name = models.CharField(u'名称',max_length=100)
+    year = models.CharField(u'年度',choices=YEAR_LIST,default=CURRENT_YEAR,max_length=10)
+    month = models.IntegerField(u'月分',choices=MONTH_LIST,default='1',max_length=10)
+    invest= models.CharField(u'投资额（亿元）',max_length=30)
+    progress = models.CharField(u'目前进度',max_length=30)
+    problem = models.TextField(u'存在问题',blank=True)
+    remark = models.TextField(u'备注',blank=True)
+    photo = models.FileField(u'图片',upload_to='dong-qian-lake-progress',blank=True,null=True)
+    responsible_for = models.CharField(u'责任部门',max_length=50)
+    
+    project = models.ForeignKey(Project,verbose_name=u'项目概况')
+
+    def __unicode__(self):
+        return u'%s %s年 %s月' % (self.name,self.year,self.month)
+
+    class Meta:
+        verbose_name = u'项目进度'
+        verbose_name_plural = u'项目进度'

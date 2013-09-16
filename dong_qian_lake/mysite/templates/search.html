@@ -5,6 +5,41 @@
 <link rel="stylesheet" href="http://www.dqlake.gov.cn/zdgc/images/css.css" />
 <link rel="stylesheet" href="http://www.dqlake.gov.cn/zdgc/images/bgchange.css" />
 <style type="text/css">
+.form-row {
+overflow:hidden;
+padding:8px 2px;
+font-size:11px;
+border-bottom:0 solid #eee;
+font-family: "Lucida Grande","DejaVu Sans","Bitstream Vera Sans",Verdana,Arial,sans-serif;
+}
+label {
+display:block;
+padding:3px 10px 0 0;
+float:left;
+width:8em;
+cursor: default;;
+}
+input:not([type="submit"]),select {
+width:100px;
+margin: 2px 0;
+padding: 2px 3px;
+vertical-align: middle;
+font-family: "Lucida Grande", Verdana, Arial, sans-serif;
+font-weight: normal;
+font-size: 11px;
+}
+
+.submit-row {
+clear:both;
+padding:1em 0 0 9.4em;
+}
+input[type="submit"] {
+background: white url(http://oss-storage.oss.aliyuncs.com/admin/img/nav-bg.gif) bottom repeat-x;
+padding: 3px 5px;
+color: black;
+border: 1px solid #bbb;
+border-color: #ddd #aaa #aaa #ddd;
+}
 </style>
 </head>
 <body>
@@ -134,59 +169,62 @@
                                                     </td>
                                                 </tr>
                                             </tbody></table>
-                                            <div>
+                                            <div class="form-content">
                                                 <form action="" method="get">
-                                                    <table>
-                                                        <tr>
-                                                            <td>项目名称：</td>
-                                                            <td>
+                                                    <div class="form-row">
+                                                    <label for="project_name">
+                                                            项目名称:
+                                                    </label>
                                                                 <input type="text" placeholder="项目名称" name="project_name"  /> 
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>项目进度：</td>
-                                                            <td>
+                                                    </div>
+                                                    <div class="form-row">
+                                                    <label for="project_schedule">
+                                                            项目年进度要求:
+                                                    </label>
                                                                 <select name="project_schedule">
                                                                     <option value="">全部</option>
                                                                     <option value="竣工">竣工</option>
-                                                                    <option value="开工">开工</option>
-                                                                    <option value="拟开工">拟开工</option>
                                                                     <option value="前期">前期</option>
                                                                     <option value="续建">续建</option>
+                                                                    <option value="开工">开工</option>
                                                                 </select> 
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>项目年限：</td>
-                                                            <td>
+                                                    </div>
+                                                    <div class="form-row">
+                                                    <label for="date_from">
+                                                            项目起始年限:
+                                                    </label>
                                                                 <select id="date_from" name="date_from">
                                                                     <option value="">不限</option>
                                                                     {% for year in year_list %}
                                                                     <option value="{{year}}">{{year}}</option>
                                                                     {% endfor %}
                                                                 </select>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>到</td>
-                                                            <td>
+                                                    </div>
+                                                           <div class="form-row">
+                                                           <label for="date_to">
+                                                            项目竣工年限:
+                                                           </label>
                                                                 <select id="date_to" name="date_to">
                                                                     <option value="">不限</option>
                                                                     {% for year in year_list %}
                                                                     <option value="{{year}}">{{year}}</option>
                                                                     {% endfor %}
                                                                 </select>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>
+                                                           </div> 
+                                                           <div class="form-row">
+                                                           <label for="invest_subject">投资主体:</label>
+                                                           <select id="invest_subject" name="invest_subject">
+                                                           <option value="">不限</option>
+                                                           <option value="企业">企业</option>
+                                                           <option value="政府">政府</option>
+                                                           </select>
+                                                           </div>
+                                                           <div style="display:none">
                                                                 {% csrf_token %}
-                                                            </td>
-                                                            <td>
-                                                                <input type="submit" />
-                                                            </td>
-                                                        </tr>
-                                                    </table>
+                                                           </div>
+                                                           <div class="submit-row">
+                                                                <input type="submit" value="提交" />
+                                                           </div>
                                                 </form>
                                             </div> 
                                             <table width="100%" height="7" border="0" cellspacing="0" cellpadding="0">
