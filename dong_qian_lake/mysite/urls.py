@@ -7,4 +7,6 @@ urlpatterns = patterns(
         (r'^accounts/logout/$',logout_view),
         (r'^search$',project_search_view),
         (r'^project$',project_detail_view),
+
+        (r'^test$',test_view),
         )

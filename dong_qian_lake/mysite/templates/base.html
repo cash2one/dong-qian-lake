@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+        <title>{% block title %}{% endblock %}</title>
+        <link rel="stylesheet" href="http://www.dqlake.gov.cn/zdgc/images/css.css" />
+        <link rel="stylesheet" href="http://www.dqlake.gov.cn/zdgc/images/bgchange.css" />
+        <script type="text/javascript" src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+        {% block custom_style %}
+        <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-theme.min.css">
+        {% endblock %}
+        {% block custom_script %}
+        <script type="text/javascript" src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+        <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+        {% endblock %}
+    </head>
+    <body>
+        <div class="container">
+            <div>
+                <img src="http://www.dqlake.gov.cn/zdgc/images/top.jpg" class="" alt="head-image"  />
+            </div>
+            <div align="center">
+                <div style="background-color:rgb(40,103,181);width:1002px" align="center">
+                    <table width="680px" height="35px" align="center" border="0" cellpadding="0" cellspacing="0">
+                        <tbody><tr style="font-size:0px;">
+                                <td width="65px" align="center" class="top_font">
+                                    <a href="index.aspx">首页</a>
+                                </td>
+                                <td width="20px" class="top_font" align="center">
+                                    |
+                                </td>
+                                <td width="65px" align="center" class="top_font">
+                                    <a href="newslist.aspx?NodeCode=100010009000210001">组织机构</a>
+                                </td>
+                                <td width="20px" class="top_font" align="center">
+                                    |
+                                </td>
+                                <td width="65px" align="center" class="top_font">
+                                    <a href="newslist.aspx?NodeCode=1000100090002100020001">项目信息</a>
+                                </td>
+                                <td width="20px" class="top_font" align="center">
+                                    |
+                                </td>
+                                <td width="65px" align="center" class="top_font">
+                                    <a href="newslist.aspx?NodeCode=1000100090002100030002">招标投标</a>
+                                </td>
+                                <td width="20px" class="top_font" align="center">
+                                    |
+                                </td>
+                                <td width="65px" align="center" class="top_font">
+                                    <a href="newslist.aspx?NodeCode=1000100090002100040001">信用信息</a>
+                                </td>
+                                <td width="20px" class="top_font" align="center">
+                                    |
+                                </td>
+                                <td width="65px" align="center" class="top_font">
+                                    <a href="newslist.aspx?NodeCode=100010009000210005">工作动态</a>
+                                </td>
+                                <td width="20px" class="top_font" align="center">
+                                    |
+                                </td>
+                                <td width="65px" align="center" class="top_font">
+                                    <a href="newslist.aspx?NodeCode=100010009000210006">政策法规</a>
+                                </td>
+                                <td width="20px" class="top_font" align="center">
+                                    |
+                                </td>
+                                <td width="65px" align="center" class="top_font">
+                                    <a href="http://www.dqlake.gov.cn/hdjl/" target="_blank">咨询投诉</a>
+                                </td>
+                                <td width="20px" class="top_font" align="center">
+                                    |
+                                </td>
+                            </tr>
+                    </tbody></table>
+                </div>
+                <div style="width:1002px;height:10px"></div>
+                <div style="width:1002px">
+                    {% block main_content %}
+                    {% endblock %}
+                </div>
+                <div style="width:1002px;height:2px;background-color: rgb(40, 103, 181);"></div>
+                <div style="width:1002px;">
+                    <div class="content_font">
+                        中国宁波东钱湖旅游度假区管委会主办<br/>
+                        版权所有:中国宁波东钱湖旅游度假区管委会 ICP:05072411号
+                    </div>
+                </div>
+            </div>
+        </div>	
+    </body>
+</html>

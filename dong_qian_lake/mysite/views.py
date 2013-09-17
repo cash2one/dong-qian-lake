@@ -9,6 +9,8 @@ from datetime import datetime
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout,login
 
+def test_view(request):
+    return my_render_to_response(request,'test.html')
 
 def logout_view(request):
     logout(request)

@@ -1,9 +1,6 @@
-<html>
-<head>
-<meta charset="UTF-8"/>
-<title>项目检索</title>
-<link rel="stylesheet" href="http://www.dqlake.gov.cn/zdgc/images/css.css" />
-<link rel="stylesheet" href="http://www.dqlake.gov.cn/zdgc/images/bgchange.css" />
+{% extends "base.html" %}
+{% block title %}项目检索{% endblock %}
+{% block custom_style %}
 <style type="text/css">
 .form-row {
 overflow:hidden;
@@ -40,98 +37,9 @@ color: black;
 border: 1px solid #bbb;
 border-color: #ddd #aaa #aaa #ddd;
 }
+
 </style>
-</head>
-<body>
-<div>
-    <table align="center" border="0px" cellpadding="0px" cellspacing="0px">
-        <tr>
-            <td>
-                <img src="http://www.dqlake.gov.cn/zdgc/images/top.jpg" alt="" />
-            </td>
-        </tr>
-    </table>
-    <table width="1002" height="35" align="center" border="0" cellpadding="0" cellspacing="0" bgcolor="#2867b5">
-        <tbody><tr>
-            <td>
-                <table width="680" height="35" align="center" border="0" cellpadding="0" cellspacing="0">
-                    <tbody><tr style="font-size:0px;">
-                        <td width="65" align="center" class="top_font">
-                            <a href="index.aspx">首页</a>
-                        </td>
-                        <td width="20" class="top_font" align="center">
-                            |
-                        </td>
-                        <td width="65" align="center" class="top_font">
-                            <a href="newslist.aspx?NodeCode=100010009000210001">组织机构</a>
-                        </td>
-                        <td width="20" class="top_font" align="center">
-                            |
-                        </td>
-                        <td width="65" align="center" class="top_font">
-                            <a href="newslist.aspx?NodeCode=1000100090002100020001">项目信息</a>
-                        </td>
-                        <td width="20" class="top_font" align="center">
-                            |
-                        </td>
-                        <td width="65" align="center" class="top_font">
-                            <a href="newslist.aspx?NodeCode=1000100090002100030002">招标投标</a>
-                        </td>
-                        <td width="20" class="top_font" align="center">
-                            |
-                        </td>
-                        <td width="65" align="center" class="top_font">
-                            <a href="newslist.aspx?NodeCode=1000100090002100040001">信用信息</a>
-                        </td>
-                        <td width="20" class="top_font" align="center">
-                            |
-                        </td>
-                        <td width="65" align="center" class="top_font">
-                            <a href="newslist.aspx?NodeCode=100010009000210005">工作动态</a>
-                        </td>
-                        <td width="20" class="top_font" align="center">
-                            |
-                        </td>
-                        <td width="65" align="center" class="top_font">
-                            <a href="newslist.aspx?NodeCode=100010009000210006">政策法规</a>
-                        </td>
-                        <td width="20" class="top_font" align="center">
-                            |
-                        </td>
-                        <td width="65" align="center" class="top_font">
-                            <a href="http://www.dqlake.gov.cn/hdjl/" target="_blank">咨询投诉</a>
-                        </td>
-                        <td width="20" class="top_font" align="center">
-                            |
-                        </td>
-                    </tr>
-                </tbody></table>
-            </td>
-            <td width="22">
-            </td>
-            <td>
-                <table width="300" height="35" align="center" border="0" cellpadding="0" cellspacing="0">
-                    <tbody><tr>
-                        <td class="top2_font">
-                            全文搜索
-                        </td>
-                        <td align="center">
-                            <input name="ctl00$txtSearch" type="text" id="ctl00_txtSearch" style="width:120px;">
-                        </td>
-                        <td>
-                            <input type="button" onclick="Search()" class="searchbtn">
-                        </td>
-                    </tr>
-                </tbody></table>
-            </td>
-        </tr>
-    </tbody></table>
-    <table width="1002" height="10" align="center" border="0" cellpadding="0" cellspacing="0" bgcolor="#ffffff">
-        <tbody><tr>
-            <td>
-            </td>
-        </tr>
-    </tbody></table>
+{% endblock %}
     <table align="center" border="0" cellpadding="0" cellspacing="0" width="1002" bgcolor="#FFFFFF">
         <tbody><tr>
             <td align="center" valign="top">
@@ -339,21 +247,3 @@ border-color: #ddd #aaa #aaa #ddd;
             </td>
         </tr>
     </tbody></table>
-    <table align="center" width="1002" height="2" border="0" cellpadding="0" cellspacing="0" bgcolor="#2867b5">
-        <tbody><tr>
-            <td>
-            </td>
-        </tr>
-    </tbody></table>
-    <table width="1002" align="center" height="120" border="0" cellpadding="0" cellspacing="0" bgcolor="#f8f8f8">
-        <tbody><tr>
-            <td align="center" class="content_font">
-                中国宁波东钱湖旅游度假区管委会主办<br>
-                版权所有:中国宁波东钱湖旅游度假区管委会 ICP:05072411号
-            </td>
-        </tr>
-    </tbody></table>
-
-</div>
-</body>
-</html>
