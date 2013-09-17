@@ -18,3 +18,7 @@ dong_qian_lake/mysite/models.pyc
 *.pyc
 
 *.pyc
+
+*.swo
+
+*.pyc

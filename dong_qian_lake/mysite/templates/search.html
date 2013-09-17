@@ -2,248 +2,179 @@
 {% block title %}项目检索{% endblock %}
 {% block custom_style %}
 <style type="text/css">
+.form-content {
+    padding:5px 1px 5px 1px;
+}
 .form-row {
-overflow:hidden;
-padding:8px 2px;
-font-size:11px;
-border-bottom:0 solid #eee;
-font-family: "Lucida Grande","DejaVu Sans","Bitstream Vera Sans",Verdana,Arial,sans-serif;
+    overflow:hidden;
+    padding:8px 2px;
+    font-size:11px;
+    border-bottom:0 solid #eee;
+    font-family: "Lucida Grande","DejaVu Sans","Bitstream Vera Sans",Verdana,Arial,sans-serif;
 }
 label {
-display:block;
-padding:3px 10px 0 0;
-float:left;
-width:8em;
-cursor: default;;
+    display:block;
+    padding:3px 10px 0 0;
+    float:left;
+    width:8em;
+    cursor: default;;
 }
 input:not([type="submit"]),select {
-width:100px;
-margin: 2px 0;
-padding: 2px 3px;
-vertical-align: middle;
-font-family: "Lucida Grande", Verdana, Arial, sans-serif;
-font-weight: normal;
-font-size: 11px;
-}
+    width:100px;
+    margin: 2px 0;
+    padding: 2px 3px;
+    vertical-align: middle;
+    font-family: "Lucida Grande", Verdana, Arial, sans-serif;
+    font-weight: normal;
+    font-size: 11px;
+      }
 
-.submit-row {
-clear:both;
-padding:1em 0 0 9.4em;
-}
-input[type="submit"] {
-background: white url(http://oss-storage.oss.aliyuncs.com/admin/img/nav-bg.gif) bottom repeat-x;
-padding: 3px 5px;
-color: black;
-border: 1px solid #bbb;
-border-color: #ddd #aaa #aaa #ddd;
-}
+      .submit-row {
+          clear:both;
+          padding:1em 0 0 9.4em;
+      }
+      input[type="submit"] {
+          background: white url(http://oss-storage.oss.aliyuncs.com/admin/img/nav-bg.gif) bottom repeat-x;
+          padding: 3px 5px;
+          color: black;
+          border: 1px solid #bbb;
+          border-color: #ddd #aaa #aaa #ddd;
+      }
 
 </style>
 {% endblock %}
-    <table align="center" border="0" cellpadding="0" cellspacing="0" width="1002" bgcolor="#FFFFFF">
-        <tbody><tr>
-            <td align="center" valign="top">
-                <table width="985" border="0" align="center" cellpadding="0" cellspacing="0">
-                    <tbody><tr>
-                        <td width="226" align="left" valign="top">
-                            <div id="ctl00_ContentPlaceHolder1_pnlMenu">
 
-                                <table width="226" height="37" border="0" cellpadding="0" cellspacing="0" background="http://www.dqlake.gov.cn/zdgc/images/lm_1.jpg">
-                                    <tbody><tr>
-                                        <td width="27">
-                                            &nbsp;
-                                        </td>
-                                        <td width="199" align="left" valign="top" class="dher_list_font">
-                                            <table width="100%" border="0" cellspacing="0" cellpadding="0">
-                                                <tbody><tr>
-                                                    <td height="14">
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="dh2_font">
-                                                        查询条件
-                                                    </td>
-                                                </tr>
-                                            </tbody></table>
-                                        </td>
-                                    </tr>
-                                </tbody></table>
-                                <table width="226" height="472" border="0" cellpadding="0" cellspacing="0" bgcolor="#FFFFFF" style="border-left: #e2e2e2 1px solid; border-right: #e2e2e2 1px solid; border-bottom: #e2e2e2 1px solid;">
-                                    <tbody><tr>
-                                        <td align="center" valign="top">
-                                            <table width="100%" height="11" border="0" cellspacing="0" cellpadding="0">
-                                                <tbody><tr>
-                                                    <td>
-                                                    </td>
-                                                </tr>
-                                            </tbody></table>
-                                            <div class="form-content">
-                                                <form action="" method="get">
-                                                    <div class="form-row">
-                                                    <label for="project_name">
-                                                            项目名称:
-                                                    </label>
-                                                                <input type="text" placeholder="项目名称" name="project_name"  /> 
-                                                    </div>
-                                                    <div class="form-row">
-                                                    <label for="project_schedule">
-                                                            项目年进度要求:
-                                                    </label>
-                                                                <select name="project_schedule">
-                                                                    <option value="">全部</option>
-                                                                    <option value="竣工">竣工</option>
-                                                                    <option value="前期">前期</option>
-                                                                    <option value="续建">续建</option>
-                                                                    <option value="开工">开工</option>
-                                                                </select> 
-                                                    </div>
-                                                    <div class="form-row">
-                                                    <label for="date_from">
-                                                            项目起始年限:
-                                                    </label>
-                                                                <select id="date_from" name="date_from">
-                                                                    <option value="">不限</option>
-                                                                    {% for year in year_list %}
-                                                                    <option value="{{year}}">{{year}}</option>
-                                                                    {% endfor %}
-                                                                </select>
-                                                    </div>
-                                                           <div class="form-row">
-                                                           <label for="date_to">
-                                                            项目竣工年限:
-                                                           </label>
-                                                                <select id="date_to" name="date_to">
-                                                                    <option value="">不限</option>
-                                                                    {% for year in year_list %}
-                                                                    <option value="{{year}}">{{year}}</option>
-                                                                    {% endfor %}
-                                                                </select>
-                                                           </div> 
-                                                           <div class="form-row">
-                                                           <label for="invest_subject">投资主体:</label>
-                                                           <select id="invest_subject" name="invest_subject">
-                                                           <option value="">不限</option>
-                                                           <option value="企业">企业</option>
-                                                           <option value="政府">政府</option>
-                                                           </select>
-                                                           </div>
-                                                           <div style="display:none">
-                                                                {% csrf_token %}
-                                                           </div>
-                                                           <div class="submit-row">
-                                                                <input type="submit" value="提交" />
-                                                           </div>
-                                                </form>
-                                            </div> 
-                                            <table width="100%" height="7" border="0" cellspacing="0" cellpadding="0">
-                                                <tbody><tr>
-                                                    <td>
-                                                    </td>
-                                                </tr>
-                                            </tbody></table>
+{% block main_content %}
+<div align="center" valign="top">
+    <div width="985px" align="center">
+        <table>
+            <tr>
+                <td style="width:226px;vertical-align: top;" align="left">
+                    <div style="height:37px;background-image:url(http://www.dqlake.gov.cn/zdgc/images/lm_1.jpg)">
+                        <div class="dh2_font" style="padding:20px;">查询条件</div>
 
-                                            <table width="100%" height="14" border="0" cellspacing="0" cellpadding="0">
-                                                <tbody><tr>
-                                                    <td>
-                                                    </td>
-                                                </tr>
-                                            </tbody></table>
-                                        </td>
-                                    </tr>
-                                </tbody></table>
+                    </div>
+                    <div style="height:472px;border-left: #e2e2e2 1px solid; border-right: #e2e2e2 1px solid; border-bottom: #e2e2e2 1px solid;">
+                        <div class="form-content">
+                            <form action="" method="get">
+                                <div class="form-row">
+                                    <label for="project_name">
+                                        项目名称:
+                                    </label>
+                                    <input type="text" placeholder="项目名称" name="project_name"  /> 
+                                </div>
+                                <div class="form-row">
+                                    <label for="project_schedule">
+                                        项目年进度要求:
+                                    </label>
+                                    <select name="project_schedule">
+                                        <option value="">全部</option>
+                                        <option value="竣工">竣工</option>
+                                        <option value="前期">前期</option>
+                                        <option value="续建">续建</option>
+                                        <option value="开工">开工</option>
+                                    </select> 
+                                </div>
+                                <div class="form-row">
+                                    <label for="date_from">
+                                        项目起始年限:
+                                    </label>
+                                    <select id="date_from" name="date_from">
+                                        <option value="">不限</option>
+                                        {% for year in year_list %}
+                                        <option value="{{year}}">{{year}}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                                <div class="form-row">
+                                    <label for="date_to">
+                                        项目竣工年限:
+                                    </label>
+                                    <select id="date_to" name="date_to">
+                                        <option value="">不限</option>
+                                        {% for year in year_list %}
+                                        <option value="{{year}}">{{year}}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div> 
+                                <div class="form-row">
+                                    <label for="invest_subject">投资主体:</label>
+                                    <select id="invest_subject" name="invest_subject">
+                                        <option value="">不限</option>
+                                        <option value="企业">企业</option>
+                                        <option value="政府">政府</option>
+                                    </select>
+                                </div>
+                                <div style="display:none">
+                                    {% csrf_token %}
+                                </div>
+                                <div class="submit-row">
+                                    <input type="submit" value="提交" />
+                                </div>
+                            </form>
+                        </div> 
 
-                            </div>
-
-                            <table width="100%" border="0" cellspacing="0" cellpadding="0">
-                                <tbody><tr>
-                                    <td>
-                                        &nbsp;
+                    </div>
+                </td>
+                <td style="vertical-align:top;">
+                    <!--                <div style="height:7px;width:750px">&nbsp;</div>-->
+                    <div style="width:750px;border: #dadada 1px solid;background-color: rgb(249, 249, 249);">
+                        <div class="blank-bar" style="width:100%;height:11px" ></div>
+                        <div style="height:437px">
+                            {%for data in query_list%}
+                            <table width="98%" border="0" cellspacing="0" cellpadding="0" style="width:100%">
+                                <tr>
+                                    <td width="3%" height="24" align="center" class="content14">•</td>
+                                    <td class="content14" align="left" height="24">
+                                        <a href="project?id={{data.id}}">{{data.project_name}}</a>
                                     </td>
                                 </tr>
-                            </tbody></table>
-                        </td>
-                        <td align="right" valign="top">
-                            <table width="99%" border="0" cellspacing="0" cellpadding="0">
-                                <tbody><tr>
-                                    <td>
-                                        <table width="750" height="398" border="0" cellpadding="0" cellspacing="0" bgcolor="#f9f9f9" style="border: #dadada 1px solid">
-                                            <tbody><tr>
-                                                <td align="center" valign="top">
-                                                    <table width="100%" height="400" border="0" cellpadding="0" cellspacing="0">
-                                                        <tbody><tr>
-                                                            <td align="center" valign="top">
-                                                                <table height="11" border="0" cellspacing="0" cellpadding="0" style="width: 100%">
-                                                                    <tbody><tr>
-                                                                        <td>
-                                                                        </td>
-                                                                    </tr>
-                                                                </tbody></table>
-                                                                {%for data in query_list%}
-                                                                <table width="98%" border="0" cellspacing="0" cellpadding="0" style="width:100%">
-                                                                    <tr>
-                                                                        <td width="3%" height="24" align="center" class="content14">•</td>
-                                                                        <td class="content14" align="left" height="24">
-                                                                            <a href="project?id={{data.id}}">{{data.project_name}}</a>
-                                                                        </td>
-                                                                    </tr>
-                                                                </table>
-                                                                <table width="96%" height="1" border="0" cellpadding="0" cellspacing="0" background="http://www.dqlake.gov.cn/images/xx.jpg">
-                                                                    <tr>
-                                                                        <td>
-                                                                        </td>
-                                                                    </tr>
-                                                                </table>
-                                                                {% endfor %}
-                                                            </td>
-                                                        </tr>
-                                                    </tbody></table>
-                                                    <table height="70" cellspacing="0" cellpadding="0" width="98%" border="0" class="content_font">
-                                                        <tbody>
-                                                        <tr>
-                                                            <td align="center">
-                                                                共有{{query_list.paginator.count}}条信息
-                                                            </td>
-                                                            <td align="center">
+                            </table>
+                            <!--                            <table width="98%" height="1" border="0" cellpadding="0" cellspacing="0" style="width:100%" background="http://www.dqlake.gov.cn/images/xx.jpg">-->
+                            <!--                                <tr>-->
+                            <!--                                    <td>-->
+                            <!--                                    </td>-->
+                            <!--                                </tr>-->
+                            <!--                            </table>-->
+                            {% endfor %}
 
-                                                                <div id="ctl00_ContentPlaceHolder1_AspNetPager1" style="height:12px;">
-                                                                    <!--    <a disabled="true" style="margin-right:5px;">首页</a>-->
-                                                                    {% if query_list.has_previous %}
-                                                                    <a href="{{url}}&page={{query_list.previous_page_number}}"  style="margin-right:5px;">上一页</a>
-                                                                    {% else %}
-                                                                    <a disabled="true" style="margin-right:5px;">上一页</a>
-                                                                    {% endif %}
-                                                                    <span style="margin-right:5px;font-weight:Bold;color:red;">{{query_list.paginator.number}}</span>
-                                                                    {% if query_list.has_next %}
-                                                                    <a href="{{url}}&page={{query_list.next_page_number}}" style="margin-right:5px;">下一页</a>
-                                                                    {% else %}
-                                                                    <a disabled="true" style="margin-right:5px;">下一页</a>
-                                                                    {% endif %}
-                                                                    <!--    <a disabled="true" style="margin-right:5px;">尾页</a>-->
-                                                                </div>
-                                                            </td>
-                                                            <td align="center">
-                                                                页次：{{query_list.number}}/{{query_list.paginator.num_pages}}页
-                                                                20条/页
-                                                            </td>
-                                                        </tr>
-                                                        </tbody>
-                                                    </table>
-                                                </td>
-                                            </tr>
-                                        </tbody></table>
-                                    </td>
-                                </tr>
-                            </tbody></table>
-                            <table width="100%" border="0" cellspacing="0" cellpadding="0">
-                                <tbody><tr>
-                                    <td>
-                                        &nbsp;
-                                    </td>
-                                </tr>
-                            </tbody></table>
-                        </td>
-                    </tr>
-                </tbody></table>
-            </td>
-        </tr>
-    </tbody></table>
+                        </div>
+                        <table height="70" cellspacing="0" cellpadding="0" width="98%" border="0" class="content_font">
+                            <tbody>
+                            <tr>
+                                <td align="center">
+                                    共有{{query_list.paginator.count}}条信息
+                                </td>
+                                <td align="center">
+
+                                    <div id="ctl00_ContentPlaceHolder1_AspNetPager1" style="height:12px;">
+                                        <!--    <a disabled="true" style="margin-right:5px;">首页</a>-->
+                                        {% if query_list.has_previous %}
+                                        <a href="{{url}}&page={{query_list.previous_page_number}}"  style="margin-right:5px;">上一页</a>
+                                        {% else %}
+                                        <a disabled="true" style="margin-right:5px;">上一页</a>
+                                        {% endif %}
+                                        <span style="margin-right:5px;font-weight:Bold;color:red;">{{query_list.paginator.number}}</span>
+                                        {% if query_list.has_next %}
+                                        <a href="{{url}}&page={{query_list.next_page_number}}" style="margin-right:5px;">下一页</a>
+                                        {% else %}
+                                        <a disabled="true" style="margin-right:5px;">下一页</a>
+                                        {% endif %}
+                                        <!--    <a disabled="true" style="margin-right:5px;">尾页</a>-->
+                                    </div>
+                                </td>
+                                <td align="center">
+                                    页次：{{query_list.number}}/{{query_list.paginator.num_pages}}页
+                                    20条/页
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+{% endblock %}
