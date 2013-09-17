@@ -2,8 +2,6 @@
 from django.db import models
 from datetime import datetime
 
-
-
 # Create your models here.
 class Project(models.Model):
     area = models.CharField(u'区块分类',max_length=30)
@@ -35,6 +33,27 @@ class Project(models.Model):
     def __unicode__(self):
         return self.project_name
 
+class ProjectOverView(models.Model):
+    project_name = models.CharField(u'项目名称',max_length=100)
+    project_schedule = models.CharField(u'项目进度',max_length=30)
+    invest_subject = models.CharField(u'投资主体',max_length=30)
+    start_time = models.CharField(u'开工时间',max_length=100,blank=True)
+    completed_time = models.CharField(u'竣工时间',max_length=100,blank=True)
+
+    project_content = models.CharField(u'"十二五"实施内容',max_length=100,blank=True)
+    year_limit = models.CharField(u'实施年限',max_length=20,blank=True)
+    planed_invest = models.CharField(u'"十二五"计划总投资',max_length=20,blank=True)
+    year_content = models.CharField(u'2012实施内容',max_length=100,blank=True)
+    response_for = models.CharField(u'责任部门',max_length=50,blank=True)
+
+    def __unicode__(self):
+        return self.project_name
+
+    class Meta:
+        verbose_name = u'项目概况'
+        verbose_name_plural = u'项目概况'
+
+
 class ProjectProgress(models.Model):
 
     def get_year_list():
@@ -43,6 +62,7 @@ class ProjectProgress(models.Model):
         for i in range(year,1999,-1):
             year_list.append((str(i),str(i)))
         return year_list
+
     def get_month_list():
         month_list = []
         for i in range(1,13):
@@ -54,7 +74,7 @@ class ProjectProgress(models.Model):
 
     name = models.CharField(u'名称',max_length=100)
     year = models.CharField(u'年度',choices=YEAR_LIST,default=CURRENT_YEAR,max_length=10)
-    month = models.IntegerField(u'月分',choices=MONTH_LIST,default='1',max_length=10)
+    month = models.CharField(u'月份',choices=MONTH_LIST,default='1',max_length=2)
     invest= models.CharField(u'投资额（亿元）',max_length=30)
     progress = models.CharField(u'目前进度',max_length=30)
     problem = models.TextField(u'存在问题',blank=True)
@@ -62,7 +82,7 @@ class ProjectProgress(models.Model):
     photo = models.FileField(u'图片',upload_to='dong-qian-lake-progress',blank=True,null=True)
     responsible_for = models.CharField(u'责任部门',max_length=50)
     
-    project = models.ForeignKey(Project,verbose_name=u'项目概况')
+    project = models.ForeignKey(ProjectOverView,verbose_name=u'项目概况')
 
     def __unicode__(self):
         return u'%s %s年 %s月' % (self.name,self.year,self.month)
@@ -70,3 +90,5 @@ class ProjectProgress(models.Model):
     class Meta:
         verbose_name = u'项目进度'
         verbose_name_plural = u'项目进度'
+
+

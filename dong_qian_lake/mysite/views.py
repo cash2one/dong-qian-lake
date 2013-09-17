@@ -2,16 +2,13 @@
 # Create your views here.
 from django.http import HttpResponse
 from django.shortcuts import render_to_response,redirect
-from models import Project
+from models import ProjectOverView,ProjectProgress 
 from django.template import Context,RequestContext
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from datetime import datetime
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout,login
 
-def login_view(request):
-    if not request.user.is_authenticated():
-        return redirect('/login/?next=search')
 
 def logout_view(request):
     logout(request)
@@ -25,7 +22,8 @@ def project_search_view(request):
     date_from = request.GET.get('date_from','')
     date_to = request.GET.get('date_to','')
     invest_subject = request.GET.get('invest_subject','') 
-    query_list = Project.objects.all()
+
+    query_list = ProjectOverView.objects.all()
     
     if name:
         query_list = query_list.filter(project_name__contains=name)
@@ -67,5 +65,12 @@ def my_render_to_response(request,template,data_dict={}):
 
 def project_detail_view(request):
     id=request.GET.get('id','')
-    project = Project.objects.get(pk=id)
-    return my_render_to_response(request,'detail.html',{'project':project})
+    
+#    if request.user.is_staff:
+#        pass
+#    else:
+    overview = ProjectOverView.objects.get(pk=id)
+    
+    progress_list = ProjectProgress.objects.filter(project=overview)
+
+    return my_render_to_response(request,'detail.html',{'project':overview,'progress_list':progress_list})
