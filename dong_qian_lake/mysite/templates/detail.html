@@ -20,16 +20,16 @@ $(document).ready(function(){
             $("select option:selected").each(function(){
                 var selected_value = $(this).val();
                 //alert(selected_value);
-                var divObject = $("#progress_"+ selected_value);
-                name     = divObject.find('input[name="name"]').val();
-                year     = divObject.find('input[name="year"]').val();
-                month    = divObject.find('input[name="month"]').val();
-                invest   = divObject.find('input[name="invest"]').val();
-                progress = divObject.find('input[name="progress"]').val();
-                problem  = divObject.find('input[name="problem"]').val();
-                remark   = divObject.find('input[name="remark"]').val();
-                photo    = divObject.find('input[name="photo"]').val();
-                responsible_for = divObject.find('input[name="responsible_for"]').val();
+                var divObject = $("#progress_"+ selected_value)[0];
+                name     = divObject.find('input[name="name"]')[0].val();
+                year     = divObject.find('input[name="year"]')[0].val();
+                month    = divObject.find('input[name="month"]')[0].val();
+                invest   = divObject.find('input[name="invest"]')[0].val();
+                progress = divObject.find('input[name="progress"]')[0].val();
+                problem  = divObject.find('input[name="problem"]')[0].val();
+                remark   = divObject.find('input[name="remark"]')[0].val();
+                photo    = divObject.find('input[name="photo"]')[0].val();
+                responsible_for = divObject.find('input[name="responsible_for"]')[0].val();
                 htmlString = '<tr>\
                 <td class="col-md-3" align="right"><b>年度</b></td><td>{0}</td></tr>\
                 <td align="right"><b>月份</b></td><td>{1}</td></tr>\
