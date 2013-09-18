@@ -20,20 +20,20 @@ $(document).ready(function(){
             $("select option:selected").each(function(){
                 var selected_value = $(this).val();
                 //alert(selected_value);
-                var divObject = $("#progress_"+ selected_value)[0];
-                name     = divObject.find('input[name="name"]')[0].val();
-                year     = divObject.find('input[name="year"]')[0].val();
-                month    = divObject.find('input[name="month"]')[0].val();
-                invest   = divObject.find('input[name="invest"]')[0].val();
-                progress = divObject.find('input[name="progress"]')[0].val();
-                problem  = divObject.find('input[name="problem"]')[0].val();
-                remark   = divObject.find('input[name="remark"]')[0].val();
-                photo    = divObject.find('input[name="photo"]')[0].val();
-                responsible_for = divObject.find('input[name="responsible_for"]')[0].val();
-                htmlString = '<tr>\
+                var divObject = $("#progress_"+ selected_value);
+                var name     = divObject.find('input[name="name"]').val();
+                var year     = divObject.find('input[name="year"]').val();
+                var month    = divObject.find('input[name="month"]').val();
+                var invest   = divObject.find('input[name="invest"]').val();
+                var progress = divObject.find('input[name="progress"]').val();
+                var problem  = divObject.find('input[name="problem"]').val();
+                var remark   = divObject.find('input[name="remark"]').val();
+                var photo    = divObject.find('input[name="photo"]').val();
+                var responsible_for = divObject.find('input[name="responsible_for"]').val();
+                var htmlString = '<tr>\
                 <td class="col-md-3" align="right"><b>年度</b></td><td>{0}</td></tr>\
                 <td align="right"><b>月份</b></td><td>{1}</td></tr>\
-                <td align="right"><b>投资额（亿元）</b></td><td>{2}</td></tr>\
+                <td align="right"><b>月完成投资（万元）</b></td><td>{2}</td></tr>\
                 <td align="right"><b>目前进度</b></td><td>{3}</td></tr>\
                 <td align="right"><b>存在问题</b></td><td>{4}</td></tr>\
                 <td align="right"><b>备注</b></td><td>{5}</td></tr>\
@@ -44,7 +44,7 @@ $(document).ready(function(){
                 htmlString = '<tr>\
                     <td class="col-md-3" align="right"><b>年度</b></td><td>{0}</td></tr>\
                     <td align="right"><b>月份</b></td><td>{1}</td></tr>\
-                    <td align="right"><b>投资额（亿元）</b></td><td>{2}</td></tr>\
+                    <td align="right"><b>月完成投资（万元）</b></td><td>{2}</td></tr>\
                     <td align="right"><b>目前进度</b></td><td>{3}</td></tr>\
                     <td align="right"><b>存在问题</b></td><td>{4}</td></tr>\
                     <td align="right"><b>备注</b></td><td>{5}</td></tr>\
@@ -115,22 +115,6 @@ table td {
         </tr>
         <tr>
             <td align="right">
-                <b>"十二五"实施内容</b>
-            </td>
-            <td>
-                {{project.project_content}}
-            </td>
-        </tr>
-        <tr>
-            <td align="right">
-                <b>"十二五"实施内容</b>
-            </td>
-            <td>
-                {{project.project_content}}
-            </td>
-        </tr>
-        <tr>
-            <td align="right">
                 <b>实施年限</b>
             </td>
             <td>
@@ -139,7 +123,7 @@ table td {
         </tr>
         <tr>
             <td align="right">
-                <b>"十二五"计划总投资<b>
+                <b>总投资<b>
                     </td>
                     <td>
                         {{project.planed_invest}}
