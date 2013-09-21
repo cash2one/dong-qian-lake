@@ -2,6 +2,11 @@
 {%block title%}{{project.project_name}}{% endblock %}
 {% block custom_script %}
 <script type="text/javascript" src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+<!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+        <!--[if lt IE 9]>
+        <script src="http://oss-storage.oss.aliyuncs.com/html5.js"></script>
+        <script src="http://oss-storage.oss.aliyuncs.com/respond.min.js"></script>
+<![endif]-->
 <script type="text/javascript">
 $(document).ready(function(){
         if (!String.prototype.format) {
