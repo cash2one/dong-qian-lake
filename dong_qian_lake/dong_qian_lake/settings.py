@@ -24,7 +24,7 @@ DATABASES = {
 }
 
 DATABASES['default'] =  dj_database_url.config()
-
+#postgres://ievvkzsikgknce:zYTs4KIK12T6LsPlNBEZRZYJLz@ec2-54-227-239-195.compute-1.amazonaws.com:5432/d88cec1aej8idi
 # Hosts/domain names that are valid for this site; required if DEBUG is False
 # See https://docs.djangoproject.com/en/1.4/ref/settings/#allowed-hosts
 ALLOWED_HOSTS = []
