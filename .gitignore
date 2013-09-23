@@ -2,3 +2,5 @@
 *.swp
 
 *.pyc
+/dong_qian_lake/dong_qian_lake/*.pyc
+/dong_qian_lake/mysite/*.pyc
