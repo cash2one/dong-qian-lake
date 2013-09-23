@@ -4,3 +4,8 @@
 *.pyc
 /dong_qian_lake/dong_qian_lake/*.pyc
 /dong_qian_lake/mysite/*.pyc
+/dong_qian_lake/mysite/*.pyc
+admin.pyc
+/dong_qian_lake/mysite/*.pyc
+/dong_qian_lake/mysite/urls.pyc
+/dong_qian_lake/mysite/*.pyc
