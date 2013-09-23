@@ -43,7 +43,11 @@ input:not([type="submit"]),select {
 
 </style>
 {% endblock %}
-
+{% block custom_script%}
+    $(function(){
+            });
+</script>
+{% endblock %}
 {% block main_content %}
 <div align="center" valign="top">
     <div width="985px" align="center">
@@ -130,12 +134,12 @@ input:not([type="submit"]),select {
                                     </td>
                                 </tr>
                             </table>
-                            <!--                            <table width="98%" height="1" border="0" cellpadding="0" cellspacing="0" style="width:100%" background="http://www.dqlake.gov.cn/images/xx.jpg">-->
-                            <!--                                <tr>-->
-                            <!--                                    <td>-->
-                            <!--                                    </td>-->
-                            <!--                                </tr>-->
-                            <!--                            </table>-->
+                                                        <table width="718px" height="1" border="0" cellpadding="0" cellspacing="0" align="center" background="http://www.dqlake.gov.cn/images/xx.jpg">
+                                                            <tr>
+                                                                <td>
+                                                                </td>
+                                                            </tr>
+                                                        </table>
                             {% endfor %}
 
                         </div>

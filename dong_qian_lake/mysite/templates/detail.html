@@ -1,14 +1,9 @@
 {% extends "base.html" %}
 {%block title%}{{project.project_name}}{% endblock %}
 {% block custom_script %}
-<script type="text/javascript" src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
-<!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
-        <!--[if lt IE 9]>
-        <script src="http://oss-storage.oss.aliyuncs.com/html5.js"></script>
-        <script src="http://oss-storage.oss.aliyuncs.com/respond.min.js"></script>
-<![endif]-->
 <script type="text/javascript">
-$(document).ready(function(){
+$(function(){
+
         if (!String.prototype.format) {
         String.prototype.format = function() {
         var args = arguments;
@@ -20,11 +15,12 @@ $(document).ready(function(){
             });
         };
         }
+        
+        $('.selectpicker').selectpicker();
 
         $("select").change(function(){
             $("select option:selected").each(function(){
                 var selected_value = $(this).val();
-                //alert(selected_value);
                 var divObject = $("#progress_"+ selected_value);
                 var name     = divObject.find('input[name="name"]').val();
                 var year     = divObject.find('input[name="year"]').val();
@@ -36,23 +32,36 @@ $(document).ready(function(){
                 var photo    = divObject.find('input[name="photo"]').val();
                 var responsible_for = divObject.find('input[name="responsible_for"]').val();
                 var htmlString = '<tr>\
-                <td class="col-md-3" align="right"><b>年度</b></td><td>{0}</td></tr>\
-                <td align="right"><b>月份</b></td><td>{1}</td></tr>\
-                <td align="right"><b>月完成投资（万元）</b></td><td>{2}</td></tr>\
-                <td align="right"><b>目前进度</b></td><td>{3}</td></tr>\
-                <td align="right"><b>存在问题</b></td><td>{4}</td></tr>\
-                <td align="right"><b>备注</b></td><td>{5}</td></tr>\
-                <td align="right"><b>图片<b></td><td><img src="{6}" width="600px"/></td></tr>\
+                <td class="col-md-3" align="right"><b>年度</b></td>\
+                <td align="left">{0}</td></tr>\
+                <td align="right"><b>月份</b></td>\
+                <td align="left">{1}</td></tr>\
+                <td align="right"><b>月完成投资（万元）</b></td>\
+                <td align="left">{2}</td></tr>\
+                <td align="right"><b>目前进度</b></td>\
+                <td align="left">{3}</td></tr>\
+                <td align="right"><b>存在问题</b></td>\
+                <td align="left">{4}</td></tr>\
+                <td align="right"><b>备注</b></td>\
+                <td align="left">{5}</td></tr>\
+                <td align="right"><b>图片<b></td>\
+                <td align="left"><img src="{6}" width="600px"/></td></tr>\
                 '.format(year,month,invest,progress,problem,remark,photo);
 
             if (photo === undefined){
                 htmlString = '<tr>\
-                    <td class="col-md-3" align="right"><b>年度</b></td><td>{0}</td></tr>\
-                    <td align="right"><b>月份</b></td><td>{1}</td></tr>\
-                    <td align="right"><b>月完成投资（万元）</b></td><td>{2}</td></tr>\
-                    <td align="right"><b>目前进度</b></td><td>{3}</td></tr>\
-                    <td align="right"><b>存在问题</b></td><td>{4}</td></tr>\
-                    <td align="right"><b>备注</b></td><td>{5}</td></tr>\
+                             <td class="col-md-3" align="right"><b>年度</b></td>\
+                             <td align="left">{0}</td></tr>\
+                             <td align="right"><b>月份</b></td>\
+                             <td align="left">{1}</td></tr>\
+                             <td align="right"><b>月完成投资（万元）</b></td>\
+                             <td align="left">{2}</td></tr>\
+                             <td align="right"><b>目前进度</b></td>\
+                             <td align="left">{3}</td></tr>\
+                             <td align="right"><b>存在问题</b></td>\
+                             <td align="left">{4}</td></tr>\
+                             <td align="right"><b>备注</b></td>\
+                             <td align="left">{5}</td></tr>\
                              '.format(year,month,invest,progress,problem,remark);
 
             }    
@@ -69,60 +78,60 @@ $(document).ready(function(){
 </script>
 {% endblock %}
 {% block custom_style %}
-<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
-<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-theme.min.css">
-
 <style type="text/css">
-.overview .detail {
-    font-size:13px;
-    font-family: "Lucida Grande","DejaVu Sans","Bitstream Vera Sans",Verdana,Arial,sans-serif;
-    width:300px;
-    padding:5px;
-}
-.table th, .table td { 
-     border-top: none; 
- }
-table td {
-    border-top: none;
-}
-.table-hover th,.table-hover td {
-    border-top:none;
-}
-.table thead>tr>th, .table tbody>tr>th, .table tfoot>tr>th, .table thead>tr>td, .table tbody>tr>td, .table tfoot>tr>td {
-    border-top:none;
-}
+    .overview .detail {
+        font-size:13px;
+        font-family: "Lucida Grande","DejaVu Sans","Bitstream Vera Sans",Verdana,Arial,sans-serif;
+        width:300px;
+        padding:5px;
+    }
+    .table th, .table td { 
+        border-top: none; 
+    }
+    table td {
+        border-top: none;
+    }
+    .table-hover th,.table-hover td {
+        border-top:none;
+    }
+    .table thead>tr>th, .table tbody>tr>th, .table tfoot>tr>th, .table thead>tr>td, .table tbody>tr>td, .table tfoot>tr>td {
+        border-top:none;
+    }
+    .table td[align=left] {
+        padding-left:25px;
+    }
 </style>
 {% endblock %}
 
 {% block main_content %}
 <table width="96%" height="60" border="0" cellpadding="0" cellspacing="0" align="center">
     <tbody><tr>
-        <td align="center" class="dh2_font" style="font-size:16px;">
-            <span id="ctl00_ContentPlaceHolder1_lblTitle">
-                {{project.project_name}}
-            </span>
-        </td>
-    </tr>
+            <td align="center" class="dh2_font" style="font-size:16px;">
+                <span id="ctl00_ContentPlaceHolder1_lblTitle">
+                    {{project.project_name}}
+                </span>
+            </td>
+        </tr>
 </tbody></table>
 <table width="95%" height="15" border="0" cellspacing="0" cellpadding="0" align="center">
     <tbody><tr>
-        <td>
-            <div id="ctl00_ContentPlaceHolder1_divImgs"><center></center></div>
-        </td>
-    </tr>
+            <td>
+                <div id="ctl00_ContentPlaceHolder1_divImgs"><center></center></div>
+            </td>
+        </tr>
 </tbody></table>
 <div class="overview">
     <table class="table table-hover">
         <tr>
             <td class="col-md-3" align="right">
                 <b>项目名称</b></td>
-            <td>{{project.project_name}}</td>
+            <td align="left">{{project.project_name}}</td>
         </tr>
         <tr>
             <td align="right">
                 <b>实施年限</b>
             </td>
-            <td>
+            <td align="left">
                 {{project.start_time}}~{{project.completed_time}}
             </td>
         </tr>
@@ -130,7 +139,7 @@ table td {
             <td align="right">
                 <b>总投资<b>
                     </td>
-                    <td>
+                    <td align="left">
                         {{project.planed_invest}}
                     </td>
                 </tr>
@@ -138,7 +147,7 @@ table td {
                     <td align="right">
                         <b>2012实施内容</b>
                     </td>
-                    <td>
+                    <td align="left">
                         {{project.year_content}}
                     </td>
                 </tr>
@@ -146,7 +155,7 @@ table td {
                     <td align="right">
                         <b>责任部门</b>
                     </td>
-                    <td>
+                    <td align="left">
                         {{project.response_for}}
                     </td>
                 </tr>
@@ -156,30 +165,30 @@ table td {
                     </td>
                     <td>
                         <div class="col-lg-5">
-                        <select class="form-control input-sm" id="progress-selector" name="progress_list">
-                            <option value="">------------</option>
-                            {% for p in progress_list %}
-                            <option value="{{p.id}}">{{p.name}} {{p.year}}年 {{p.month}}月</option>
-                            {% endfor %}
-                        </select>
+                            <select class="form-control" title='请选择以下选项...' data-live-search="true" name="progress_list">
+                                <option value="">------------</option>
+                                {% for p in progress_list %}
+                                <option value="{{p.id}}">{{p.name}} {{p.year}}年 {{p.month}}月</option>
+                                {% endfor %}
+                            </select>
                         </div>
-                <div style="display:none">
-                    {% for p in progress_list %}
-                    <div id="progress_{{p.id}}" >
-                        <input type="text" name="name" value="{{p.name}}" />
-                        <input type="text" name="year" value="{{p.year}}" />
-                        <input type="text" name="month" value="{{p.month}}" />
-                        <input type="text" name="invest" value="{{p.invest}}" />
-                        <input type="text" name="progress" value="{{p.progress}}" />
-                        <input type="text" name="problem" value="{{p.problem}}" />
-                        <input type="text" name="remark" value="{{p.remark}}" />
-                        {% if p.photo %}
-                        <input type="text" name="photo" value="{{p.photo.url}}" />
-                        {% endif %}
-                        <input type="text" name="responsible_for" value="{{p.responsible_for}}" />
-                    </div>
-                    {% endfor %}
-                </div>
+                        <div style="display:none">
+                            {% for p in progress_list %}
+                            <div id="progress_{{p.id}}" >
+                                <input type="text" name="name" value="{{p.name}}" />
+                                <input type="text" name="year" value="{{p.year}}" />
+                                <input type="text" name="month" value="{{p.month}}" />
+                                <input type="text" name="invest" value="{{p.invest}}" />
+                                <input type="text" name="progress" value="{{p.progress}}" />
+                                <input type="text" name="problem" value="{{p.problem}}" />
+                                <input type="text" name="remark" value="{{p.remark}}" />
+                                {% if p.photo %}
+                                <input type="text" name="photo" value="{{p.photo.url}}" />
+                                {% endif %}
+                                <input type="text" name="responsible_for" value="{{p.responsible_for}}" />
+                            </div>
+                            {% endfor %}
+                        </div>
                     </td>
                 </tr>
             </table>
