@@ -9,3 +9,8 @@ admin.pyc
 /dong_qian_lake/mysite/*.pyc
 /dong_qian_lake/mysite/urls.pyc
 /dong_qian_lake/mysite/*.pyc
+/dong_qian_lake/storages/admin.pyc
+/dong_qian_lake/storages/models.pyc
+/dong_qian_lake/storages/backends/__init__.pyc
+/dong_qian_lake/storages/backends/aliyun.pyc
+/dong_qian_lake/storages/backends/oss.pyc
