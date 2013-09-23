@@ -8,6 +8,45 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from datetime import datetime
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout,login
+from django.forms import ModelForm
+
+class OverViewForm(ModelForm):
+    
+    class Meta:
+        model = ProjectOverView
+
+class ProgressForm(ModelForm):
+
+    class Meta:
+        model = ProjectProgress
+
+def add_progress_view(request):
+    f = ProgressForm()
+
+    if request.POST:
+        f = ProgressForm(request.POST,request.FILES)
+
+        if f.is_valid():
+            f.save()
+            return redirect(search_view)
+
+    return my_render_to_response(request,'new_progress.html',{'form':f})
+
+def edit_progress_view(request,id):
+    p = ProjectProgress.objects.get(pk=id)
+    f = ProgressForm(instance=p)
+
+    if request.POST:
+        f = ProgressForm(request.POST,request.FILES,instance=a)
+        if f.is_valid():
+            f.save()
+            return redirect(search_view)
+    return my_render_to_response(request,'edit_progress.html',{'form':f})
+
+def delete_progress_view(request,id):
+    p = ProjectProgress.objects.get(pk=id)
+    p.delete()
+    return redirect(search_view)
 
 def test_view(request):
     return my_render_to_response(request,'test.html')
@@ -17,7 +56,7 @@ def logout_view(request):
     return redirect('/search')
 
 @login_required
-def project_search_view(request):
+def search_view(request):
     page = request.GET.get('page','1') 
     name = request.GET.get('project_name','')
     schedule = request.GET.get('project_schedule','')
@@ -65,7 +104,7 @@ def project_search_view(request):
 def my_render_to_response(request,template,data_dict={}):
     return render_to_response(template,data_dict,context_instance=RequestContext(request))
 
-def project_detail_view(request):
+def detail_view(request):
     id=request.GET.get('id','')
     
 #    if request.user.is_staff:
@@ -76,3 +115,5 @@ def project_detail_view(request):
     progress_list = ProjectProgress.objects.filter(project=overview)
 
     return my_render_to_response(request,'detail.html',{'project':overview,'progress_list':progress_list})
+
+
