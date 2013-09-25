@@ -9,6 +9,7 @@ from datetime import datetime
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout,login
 from django.forms import ModelForm
+from django import forms
 
 class OverViewForm(ModelForm):
     
@@ -16,6 +17,12 @@ class OverViewForm(ModelForm):
         model = ProjectOverView
 
 class ProgressForm(ModelForm):
+    
+    def __init__(self,*args,**kwargs):
+        super(ProgressForm,self).__init__(*args,**kwargs)
+        for k,v in self.fields.items():
+            v.widget.attrs.update({'class':'form-control'})
+            print 24,v
 
     class Meta:
         model = ProjectProgress

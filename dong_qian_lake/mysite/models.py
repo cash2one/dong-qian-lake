@@ -75,7 +75,7 @@ class ProjectProgress(models.Model):
     name = models.CharField(u'名称',max_length=100)
     year = models.CharField(u'年度',choices=YEAR_LIST,default=CURRENT_YEAR,max_length=10)
     month = models.CharField(u'月份',choices=MONTH_LIST,default='1',max_length=2)
-    invest= models.CharField(u'投资额（亿元）',max_length=30)
+    invest= models.CharField(u'投资额（万元）',max_length=30)
     progress = models.CharField(u'目前进度',max_length=30)
     problem = models.TextField(u'存在问题',blank=True)
     remark = models.TextField(u'备注',blank=True)
