@@ -14,9 +14,9 @@ urlpatterns = patterns(
         (r'^progress/edit/(?P<id>\d+)/$',edit_progress_view),
         (r'^progress/delete/(?P<id>\d+)/$',delete_progress_view),
 
-#        (r'^overviews/new$',add_overview_view),
-#        (r'^overviews/edit/(?P<id>\d+)/$',edit_overview_view),
-#        (r'^overviews/delete/(?P<id>\d+)/$',edit_overview_view),
+        (r'^overviews/new$',add_overview_view),
+        (r'^overviews/edit/(?P<id>\d+)/$',edit_overview_view),
+        (r'^overviews/delete/(?P<id>\d+)/$',edit_overview_view),
         
 
 

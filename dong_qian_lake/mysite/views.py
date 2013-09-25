@@ -48,6 +48,33 @@ def delete_progress_view(request,id):
     p.delete()
     return redirect(search_view)
 
+def add_overview_view(request):
+    f = OverViewForm()
+
+    if request.POST:
+        f = OverViewForm(request.POST)
+
+        if f.is_valid():
+            f.save()
+            return resirect(search_view)
+    return my_render_to_response(request,'add_overview.html',{'form':f})
+
+def edit_overview_view(request,id):
+    o = ProjectOverView.objects.get(pk=id)
+    f = OverViewForm(instance=o)
+
+    if request.POST:
+        f = OverViewForm(request.POST,instance=o)
+        if f.is_valid():
+            f.save()
+            return redirect(search_view)
+    return my_render_to_response(requst,'edit_overview.html',{'form':f})
+
+def delete_progress_view(request,id):
+    o  = ProjectOverView.objects.get(pk=id)
+    o.delete()
+    return redirect(search_view)
+
 def test_view(request):
     return my_render_to_response(request,'test.html')
 
