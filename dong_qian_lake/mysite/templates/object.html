@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+{% block title %}{% endblock %}
+
+{% block custom_script %}
+<script type="text/javascript" src="http://oss-storage.oss.aliyuncs.com/bootstrap-wysihtml5/dist/bootstrap-wysihtml5-0.0.2.js"></script>
+<script type="text/javascript">
+</script>
+{% endblock %}
+{% block custom_style %}
+<link rel="stylesheet" href="http://oss-storage.oss.aliyuncs.com/bootstrap-wysihtml5/dist/bootstrap-wysihtml5-0.0.2.css" />
+<style type="text/css">
+    .bs-container {
+        margin-left:0;
+        margin-right:0;
+        background-color:#fff;
+        border-width:1px;
+        border-color:#ddd;
+        border-radius:4px 4px 0 0;
+        box-shadow:none;
+        position:relative;
+        padding:15px 15px 15px;
+        /*margin: 0 -15px -15px;*/
+        border-style: solid;
+    }
+    h3 {
+        text-align:left;
+    }
+    .errorlist {
+        color:#b94a48;
+        list-style-type: none;
+    }
+</style>
+{% endblock %}
+{% block main_content %}
+<div class="bs-container">
+    <h3>{% block action %}新增{% endblock %} {% block object_title %}项目进度{% endblock %}</h3>
+    <div class="form-content">
+        <form role="form" class="form-horizontal" action="" method="post">
+            <fieldset>
+                {{form.non_field_errors}}
+                {% csrf_token %}
+                {% for field in form %}
+                <div class="form-group">
+                    {{field.errors}}
+                    {% ifequal field.label '项目概况' %}
+                    <label for="id_name" class="col-sm-3 control-label">{{field.label}}</label>
+                    <div class="col-sm-5">
+                        {{field}}
+                    </div>
+                    <div class="col-sm-1">
+                        <button type="button" class="btn btn-default btn-md">
+                            <span class="glyphicon glyphicon-plus"></span>
+                        </button>
+                    </div>
+                    {% else %}
+                    <label for="id_name" class="col-sm-3 control-label">{{field.label}}</label>
+                    <div class="col-sm-6" align="left">
+                        {{field}}
+                    </div>
+                    {% endifequal %}
+                </div>
+                {% endfor %}
+                <div class="form-group">
+                    <div class="col-lg-offset-3 col-lg-6" style="text-align:left">
+                        <button type="submit" class="btn btn-primary" name="submit">提交</button>
+                        {% block delete_button %}
+<!--                        <a class="btn btn-danger" href="">删除</a>-->
+                        {% endblock %}
+                    </div>
+                </div>
+
+            </fieldset>
+        </form>
+    </div>
+</div>
+{% endblock %}

@@ -16,17 +16,26 @@ class OverViewForm(ModelForm):
     class Meta:
         model = ProjectOverView
 
+    def __init__(self,*args,**kwargs):
+        super(OverViewForm,self).__init__(*args,**kwargs)
+        for k,v in self.fields.items():
+            v.widget.attrs.update({'class':'form-control'})
+
 class ProgressForm(ModelForm):
     
     def __init__(self,*args,**kwargs):
         super(ProgressForm,self).__init__(*args,**kwargs)
         for k,v in self.fields.items():
             v.widget.attrs.update({'class':'form-control'})
-            print 24,v
+            if k == 'problem' or k=='remark':
+                v.widget.attrs.update({'rows':'3'})
+            if k == 'project':
+                v.widget.attrs.update({'class':'form-control selectpicker','data-live-search':'true'})
 
     class Meta:
         model = ProjectProgress
 
+@login_required
 def add_progress_view(request):
     f = ProgressForm()
 
@@ -37,24 +46,27 @@ def add_progress_view(request):
             f.save()
             return redirect(search_view)
 
-    return my_render_to_response(request,'new_progress.html',{'form':f})
+    return manage_render_to_response(request,'new_progress.html',{'form':f})
 
+@login_required
 def edit_progress_view(request,id):
     p = ProjectProgress.objects.get(pk=id)
     f = ProgressForm(instance=p)
 
     if request.POST:
-        f = ProgressForm(request.POST,request.FILES,instance=a)
+        f = ProgressForm(request.POST,request.FILES,instance=p)
         if f.is_valid():
             f.save()
             return redirect(search_view)
-    return my_render_to_response(request,'edit_progress.html',{'form':f})
+    return manage_render_to_response(request,'edit_progress.html',{'form':f,'id':id})
 
+@login_required
 def delete_progress_view(request,id):
     p = ProjectProgress.objects.get(pk=id)
     p.delete()
     return redirect(search_view)
 
+@login_required
 def add_overview_view(request):
     f = OverViewForm()
 
@@ -64,8 +76,9 @@ def add_overview_view(request):
         if f.is_valid():
             f.save()
             return resirect(search_view)
-    return my_render_to_response(request,'add_overview.html',{'form':f})
+    return manage_render_to_response(request,'new_overview.html',{'form':f})
 
+@login_required
 def edit_overview_view(request,id):
     o = ProjectOverView.objects.get(pk=id)
     f = OverViewForm(instance=o)
@@ -75,9 +88,10 @@ def edit_overview_view(request,id):
         if f.is_valid():
             f.save()
             return redirect(search_view)
-    return my_render_to_response(requst,'edit_overview.html',{'form':f})
+    return manage_render_to_response(request,'edit_overview.html',{'form':f,'id':id})
 
-def delete_progress_view(request,id):
+@login_required
+def delete_overview_view(request,id):
     o  = ProjectOverView.objects.get(pk=id)
     o.delete()
     return redirect(search_view)
@@ -87,7 +101,7 @@ def test_view(request):
 
 def logout_view(request):
     logout(request)
-    return redirect('/search')
+    return redirect(search_view)
 
 @login_required
 def search_view(request):
@@ -102,7 +116,6 @@ def search_view(request):
     
     if name:
         query_list = query_list.filter(project_name__contains=name)
-        print 20, query_list 
 
     if schedule:
         query_list = query_list.filter(project_schedule__contains=schedule)
@@ -132,12 +145,19 @@ def search_view(request):
         year_list.append(i)
 
     url = request.get_full_path()
-
-    return my_render_to_response(request,'search.html',{'query_list':projects,'year_list':year_list,'url':url})
+    user = request.user
+    return my_render_to_response(request,'search.html',{'query_list':projects,'year_list':year_list,'url':url,'user':user})
 
 def my_render_to_response(request,template,data_dict={}):
     return render_to_response(template,data_dict,context_instance=RequestContext(request))
 
+def manage_render_to_response(request,template,data_dict={}):
+    if request.user.is_staff:
+        return my_render_to_response(request,template,data_dict)
+    else:
+        return redirect(search_view)
+
+@login_required
 def detail_view(request):
     id=request.GET.get('id','')
     
@@ -150,4 +170,23 @@ def detail_view(request):
 
     return my_render_to_response(request,'detail.html',{'project':overview,'progress_list':progress_list})
 
+@login_required
+def list_progress_view(request):
+    foreign_key = request.GET.get('foreignkey','')
+    page = request.GET.get('page','')
+    query_list = ProjectProgress.objects.all()
+    if foreign_key:
+        p = ProjectOverView.objects.get(pk=foreign_key)
+        query_list = query_list.filter(project=p)
+
+    paginator = Paginator(query_list,20)
+
+    try:
+        query_list = paginator.page(page)
+    except PageNotAnInteger:
+        query_list = paginator.page(1)
+    except EmptyPage:
+        query_list = paginator.page(paginator.num_pages)
+
+    return manage_render_to_response(request,'list_progress.html',{'query_list':query_list})
 

@@ -35,16 +35,17 @@ class Project(models.Model):
 
 class ProjectOverView(models.Model):
     project_name = models.CharField(u'项目名称',max_length=100)
+    year_limit = models.CharField(u'实施年限',max_length=20,blank=True)
+    planed_invest = models.CharField(u'总投资',max_length=20,blank=True)
+    year_content = models.CharField(u'2012实施内容',max_length=100,blank=True)
+    response_for = models.CharField(u'责任部门',max_length=50,blank=True)
+
     project_schedule = models.CharField(u'项目进度',max_length=30)
     invest_subject = models.CharField(u'投资主体',max_length=30)
     start_time = models.CharField(u'开工时间',max_length=100,blank=True)
     completed_time = models.CharField(u'竣工时间',max_length=100,blank=True)
 
     project_content = models.CharField(u'"十二五"实施内容',max_length=100,blank=True)
-    year_limit = models.CharField(u'实施年限',max_length=20,blank=True)
-    planed_invest = models.CharField(u'"十二五"计划总投资',max_length=20,blank=True)
-    year_content = models.CharField(u'2012实施内容',max_length=100,blank=True)
-    response_for = models.CharField(u'责任部门',max_length=50,blank=True)
 
     def __unicode__(self):
         return self.project_name

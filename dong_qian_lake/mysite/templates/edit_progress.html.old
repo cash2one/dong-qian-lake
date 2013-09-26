@@ -1,0 +1,5 @@
+{% extends 'new_progress.html' %}
+{% block action %}编辑{% endblock %}
+{% block delete_button %}
+<a class="btn btn-danger" href="/progress/delete/{{id}}/">删除</a>
+{% endblock %}
