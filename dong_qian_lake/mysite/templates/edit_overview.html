@@ -2,6 +2,19 @@
 {% block title%}编辑|项目概况{% endblock %}
 {% block action %}编辑{% endblock %}
 {% block object_title%}项目概况{% endblock %}
+
+{% block header_action %}编辑{% endblock %}
+{% block header_title %}项目概况{% endblock %}
+
+{% block breadcrumb_action %}编辑{% endblock %}
+{% block breadcrumb_object_title%} 
+项目概况
+{% endblock %}
+
+{% block breadcrumb_other %}
+{{form.project_name.value}}
+{% endblock %}
+
 {% block delete_button%}
-<a href="/overviews/delete/{{id}}/" class="btn btn-danger">删除</a>
+<a href="{% url mysite.views.delete_overview_view id %}" class="btn btn-danger">删除</a>
 {% endblock %}

@@ -11,49 +11,69 @@
 {% endblock %}
 
 {% block main_content%}
-<div class="panel panel-default">
-    <div class="panel-heading" align="left">
-        <div>
-            <p>
-            进度列表 
-            </p>
-            <a href="/progress/new">[ 新增 项目进度 ]</a>
-        </div>
-    </div>
-    <div class="panel-body">
-        <table class="table table-condensed">
-            {% for data in query_list %}
-            <tr>
-                <td class="col-xs-1">
-                    <a href="/progress/delete/{{data.id}}/">[删除]</a>
-                </td>
-                <td align="left">
-                    <a href="/progress/edit/{{data.id}}">{{data.name}} [{{data.year}}-{{data.month}}]</a>
-                </td>
-            </tr>
-            {% endfor %}
-        </table>
-    </div>
-    <div class="panel-footer">
-        <ul class="pager">
+<div class="subhead">
+<div class="container">
+<h3>进度列表</h3>
+<p class="lead"></p>
+</div>
+</div>
+<div class="container well">
+    <ul class="breadcrumb">
+    <li>
+    <a href="{% url mysite.views.search_view %}">项目概况查询</a>
+    <span class="divider">/</span>
+    </li>
+    <li class="active">
+    <a href="#">
+    进度列表
+    </a>
+    </li>
+    </ul>
+    <ul class="nav nav-pills">
+    <li class="active">
+    <a href="{% url mysite.views.add_progress_view %}">新增 项目进度</a>
+    </li>
+    </ul>
+    <table class="table">
+        {% for data in query_list %}
+        <tr>
+        	<td class="span1">
+                <a href="{% url mysite.views.delete_progress_view data.id %}">删除</a>
+            </td>
+        	<td>
+                <a href="{% url mysite.views.edit_progress_view data.id %}">{{data.name}} {{data.year}} {{data.month}}</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+    <div class="pagination">
+        <ul>
             {% if query_list.has_previous %}
             <li class="previous">
-            <a href="?page={{ query_list.previous_page_number }}">前一页</a>
+            <a href="?page={{ query_list.previous_page_number }}">&laquo;</a>
+            </li>
+            <li>
+                    <a href="{% url mysite.views.list_progress_view%}?{{url}}&page={{query_list.previous_page_number}}">{{query_list.previous_page_number}}</a>
+
             </li>
             {% endif %}
 
-            <!--                <span class="current">-->
-                <!--                    Page {{ contacts.number }} of {{ contacts.paginator.num_pages }}.-->
-                <!--                </span>-->
 
             {% if query_list.has_next %}
+            <li> 
+                    <a href="{% url mysite.views.list_progress_view %}?{{url}}&page={{query_list.next_page_number}}">{{query_list.next_page_number}}</a>
+
             <li class="next">
-            <a href="?page={{ query_list.next_page_number }}">下一页</a>
+            <a href="?page={{ query_list.next_page_number }}">&raquo;</a>
             </li>
             {% endif %}
         </ul>
 
     </div>
+    <p class="pull-right" >
+                                    {{ query_list.number }}/{{ query_list.paginator.num_pages }}页,共有{{query_list.paginator.count}}条记录
+    </p>
 </div>
 {% endblock %}
 

@@ -2,6 +2,20 @@
 {% block title %}编辑|项目进度{% endblock %}
 {% block action %}编辑{% endblock %}
 {% block object_title %}项目进度{% endblock %}
+
+
+{% block header_action %}编辑{% endblock %}
+{% block header_title %}项目进度{% endblock %}
+
+{% block breadcrumb_action %}编辑{% endblock %}
+{% block breadcrumb_object_title%} 
+项目进度
+{% endblock %}
+
+{% block breadcrumb_other %}
+{{form.name.value}}
+{% endblock %}
+
 {% block delete_button%}
-<a href="/progress/delete/{{id}}" class="btn btn-danger">删除</a>
+<a href="{% url mysite.views.delete_progress_view id %}" class="btn btn-danger">删除</a>
 {% endblock %}

@@ -23,7 +23,7 @@ DATABASES = {
     }
 }
 
-DATABASES['default'] =  dj_database_url.config(default='postgres://ievvkzsikgknce:zYTs4KIK12T6LsPlNBEZRZYJLz@ec2-54-227-239-195.compute-1.amazonaws.com:5432/d88cec1aej8idi')
+#DATABASES['default'] =  dj_database_url.config(default='postgres://ievvkzsikgknce:zYTs4KIK12T6LsPlNBEZRZYJLz@ec2-54-227-239-195.compute-1.amazonaws.com:5432/d88cec1aej8idi')
 #postgres://ievvkzsikgknce:zYTs4KIK12T6LsPlNBEZRZYJLz@ec2-54-227-239-195.compute-1.amazonaws.com:5432/d88cec1aej8idi
 # Hosts/domain names that are valid for this site; required if DEBUG is False
 # See https://docs.djangoproject.com/en/1.4/ref/settings/#allowed-hosts
@@ -54,18 +54,18 @@ USE_TZ = True
 
 # Absolute filesystem path to the directory that will hold user-uploaded files.
 # Example: "/home/media/media.lawrence.com/media/"
-MEDIA_ROOT = ''
+MEDIA_ROOT = os.path.join(APP_ROOT,'../mysite/static') 
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash.
 # Examples: "http://media.lawrence.com/media/", "http://example.com/media/"
-MEDIA_URL = ''
+MEDIA_URL = '/d-media/'
 
 # Absolute path to the directory static files should be collected to.
 # Don't put anything in this directory yourself; store your static files
 # in apps' "static/" subdirectories and in STATICFILES_DIRS.
 # Example: "/home/media/media.lawrence.com/static/"
-STATIC_ROOT = ''
+STATIC_ROOT =''# os.path.join(APP_ROOT,'../mysite/static') 
 
 # URL prefix for static files.
 # Example: "http://media.lawrence.com/static/"
@@ -164,12 +164,12 @@ LOGGING = {
     }
 }
 
-STATICFILES_STORAGE  = 'storages.backends.oss.OSSStorage'
-DEFAULT_FILE_STORAGE = 'storages.backends.oss.OSSStorage'
+#STATICFILES_STORAGE  = 'storages.backends.oss.OSSStorage'
+#DEFAULT_FILE_STORAGE = 'storages.backends.oss.OSSStorage'
 
-OSS_STORAGE_BUCKET_NAME = 'oss-storage'
-OSS_ACCESS_KEY_ID = 'skgKAqCZZ6ig6bpR'
-OSS_ACCESS_KEY_SECRET = 'RwkMAYQzg6ZUpq8WoYJNA14hmt1Ped'
+#OSS_STORAGE_BUCKET_NAME = 'oss-storage'
+#OSS_ACCESS_KEY_ID = 'skgKAqCZZ6ig6bpR'
+#OSS_ACCESS_KEY_SECRET = 'RwkMAYQzg6ZUpq8WoYJNA14hmt1Ped'
 
-STATIC_URL = 'http://%s.oss.aliyuncs.com/' % OSS_STORAGE_BUCKET_NAME
-ADMIN_MEDIA_PREFIX = STATIC_URL + 'admin/'
+#STATIC_URL = 'http://%s.oss.aliyuncs.com/' % OSS_STORAGE_BUCKET_NAME
+#ADMIN_MEDIA_PREFIX = STATIC_URL + 'admin/'

@@ -31,40 +31,54 @@
     }
 </style>
 {% endblock %}
+{% block header_action %}新增{% endblock %}
+{% block header_title %}项目进度{% endblock %}
 {% block main_content %}
-<div class="bs-container">
-    <h3>{% block action %}新增{% endblock %} {% block object_title %}项目进度{% endblock %}</h3>
+<div class="container well">
+    <ul class="breadcrumb">
+        <li>
+        <a href="{% url mysite.views.search_view %}">项目概况查询</a>
+        <span class="divider">/</span>
+        </li>
+        <li class="active">
+        <a href="#">{% block breadcrumb_action%}新增{% endblock %} {% block breadcrumb_object_title%}项目进度{% endblock %}</a>
+        <span class="divider">/</span>
+        </li>
+        <li>
+        {% block breadcrumb_other %}{% endblock %}
+        </li>
+    </ul>
     <div class="form-content">
         <form role="form" class="form-horizontal" action="" method="post">
+           <legend></legend> 
             <fieldset>
                 {{form.non_field_errors}}
                 {% csrf_token %}
                 {% for field in form %}
-                <div class="form-group">
+                <div class="control-group">
                     {{field.errors}}
                     {% ifequal field.label '项目概况' %}
-                    <label for="id_name" class="col-sm-3 control-label">{{field.label}}</label>
-                    <div class="col-sm-5">
+                    <label for="id_name" class="control-label">{{field.label}}</label>
+                    <div class="controls">
                         {{field}}
                     </div>
-                    <div class="col-sm-1">
-                        <button type="button" class="btn btn-default btn-md">
+                    <div class="">
+                        <button type="button" class="btn btn-default">
                             <span class="glyphicon glyphicon-plus"></span>
                         </button>
                     </div>
                     {% else %}
-                    <label for="id_name" class="col-sm-3 control-label">{{field.label}}</label>
-                    <div class="col-sm-6" align="left">
+                    <label for="id_name" class="control-label">{{field.label}}</label>
+                    <div class="controls">
                         {{field}}
                     </div>
                     {% endifequal %}
                 </div>
                 {% endfor %}
-                <div class="form-group">
-                    <div class="col-lg-offset-3 col-lg-6" style="text-align:left">
+                <div class="control-group">
+                    <div class="controls">
                         <button type="submit" class="btn btn-primary" name="submit">提交</button>
                         {% block delete_button %}
-<!--                        <a class="btn btn-danger" href="">删除</a>-->
                         {% endblock %}
                     </div>
                 </div>
