@@ -138,7 +138,7 @@ def search_view(request):
     except EmptyPage:
         projects = paginator.page(paginator.num_pages)
 
-    year = datetime.now().year
+    year = datetime.now().year + 10
     
     year_list = []
     for i in range(year,1999,-1):

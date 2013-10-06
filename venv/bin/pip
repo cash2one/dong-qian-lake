@@ -1,4 +1,4 @@
-#!/Users/caoguangyao/dong-qian-lake/venv/bin/python
+#!/Volumes/MAC_HDD/Users/caoguangyao/Documents/dong-qian-lake/venv/bin/python
 # EASY-INSTALL-ENTRY-SCRIPT: 'pip==1.4.1','console_scripts','pip'
 __requires__ = 'pip==1.4.1'
 import sys

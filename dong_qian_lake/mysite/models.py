@@ -58,7 +58,7 @@ class ProjectOverView(models.Model):
 class ProjectProgress(models.Model):
 
     def get_year_list():
-        year = datetime.now().year
+        year = datetime.now().year+10
         year_list = []
         for i in range(year,1999,-1):
             year_list.append((str(i),str(i)))
@@ -80,7 +80,11 @@ class ProjectProgress(models.Model):
     progress = models.CharField(u'目前进度',max_length=30)
     problem = models.TextField(u'存在问题',blank=True)
     remark = models.TextField(u'备注',blank=True)
-    photo = models.FileField(u'图片',upload_to='dong-qian-lake-progress',blank=True,null=True)
+    photo1 = models.FileField(u'图片',upload_to='dong-qian-lake-progress',blank=True,null=True)
+    photo2 = models.FileField(u'图片',upload_to='dong-qian-lake-progress',blank=True,null=True)
+    photo3 = models.FileField(u'图片',upload_to='dong-qian-lake-progress',blank=True,null=True)
+    photo4 = models.FileField(u'图片',upload_to='dong-qian-lake-progress',blank=True,null=True)
+    photo5 = models.FileField(u'图片',upload_to='dong-qian-lake-progress',blank=True,null=True)
     responsible_for = models.CharField(u'责任部门',max_length=50)
     
     project = models.ForeignKey(ProjectOverView,verbose_name=u'项目概况')
@@ -88,6 +92,14 @@ class ProjectProgress(models.Model):
     def __unicode__(self):
         return u'%s %s年 %s月' % (self.name,self.year,self.month)
 
+    def photo_list(self):
+        photo_list=[]
+        for i in range(1,6):
+            field_name = 'photo%d' % i
+            if self.__dict__[field_name]:
+                photo_list.append(self.__dict__[field_name])
+        
+        return photo_list
     class Meta:
         verbose_name = u'项目进度'
         verbose_name_plural = u'项目进度'

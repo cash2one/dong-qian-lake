@@ -2,79 +2,79 @@
 {%block title%}{{project.project_name}}{% endblock %}
 {% block custom_script %}
 <script type="text/javascript">
-$(function(){
+    $(function(){
 
-        if (!String.prototype.format) {
-        String.prototype.format = function() {
-        var args = arguments;
-        return this.replace(/{(\d+)}/g, function(match, number) { 
-            return typeof args[number] != 'undefined'
-            ? args[number]
-            : match
-            ;
-            });
-        };
-        }
-        
-//        $('.selectpicker').selectpicker();
-
-        $("select").change(function(){
-            $("select option:selected").each(function(){
-                var selected_value = $(this).val();
-                var divObject = $("#progress_"+ selected_value);
-                var name     = divObject.find('input[name="name"]').val();
-                var year     = divObject.find('input[name="year"]').val();
-                var month    = divObject.find('input[name="month"]').val();
-                var invest   = divObject.find('input[name="invest"]').val();
-                var progress = divObject.find('input[name="progress"]').val();
-                var problem  = divObject.find('input[name="problem"]').val();
-                var remark   = divObject.find('input[name="remark"]').val();
-                var photo    = divObject.find('input[name="photo"]').val();
-                var responsible_for = divObject.find('input[name="responsible_for"]').val();
-                var htmlString = '<tr>\
-                <td class="col-md-3" align="right"><b>年度</b></td>\
-                <td align="left">{0}</td></tr>\
-                <td align="right"><b>月份</b></td>\
-                <td align="left">{1}</td></tr>\
-                <td align="right"><b>月完成投资（万元）</b></td>\
-                <td align="left">{2}</td></tr>\
-                <td align="right"><b>目前进度</b></td>\
-                <td align="left">{3}</td></tr>\
-                <td align="right"><b>存在问题</b></td>\
-                <td align="left">{4}</td></tr>\
-                <td align="right"><b>备注</b></td>\
-                <td align="left">{5}</td></tr>\
-                <td align="right"><b>图片<b></td>\
-                <td align="left"><img src="{6}" width="600px"/></td></tr>\
-                '.format(year,month,invest,progress,problem,remark,photo);
-
-            if (photo === undefined){
-                htmlString = '<tr>\
-                             <td class="col-md-3" align="right"><b>年度</b></td>\
-                             <td align="left">{0}</td></tr>\
-                             <td align="right"><b>月份</b></td>\
-                             <td align="left">{1}</td></tr>\
-                             <td align="right"><b>月完成投资（万元）</b></td>\
-                             <td align="left">{2}</td></tr>\
-                             <td align="right"><b>目前进度</b></td>\
-                             <td align="left">{3}</td></tr>\
-                             <td align="right"><b>存在问题</b></td>\
-                             <td align="left">{4}</td></tr>\
-                             <td align="right"><b>备注</b></td>\
-                             <td align="left">{5}</td></tr>\
-                             '.format(year,month,invest,progress,problem,remark);
-
-            }    
-
-            $("#progress_detail").html(htmlString);
-            if ($(this).val()===""){
-                $("#progress_detail").html('');
+            if (!String.prototype.format) {
+            String.prototype.format = function() {
+            var args = arguments;
+            return this.replace(/{(\d+)}/g, function(match, number) { 
+                return typeof args[number] != 'undefined'
+                ? args[number]
+                : match
+                ;
+                });
+            };
             }
+
+            //        $('.selectpicker').selectpicker();
+
+            $("select").change(function(){
+                $("select option:selected").each(function(){
+                    var selected_value = $(this).val();
+                    var divObject = $("#progress_"+ selected_value);
+                    var name     = divObject.find('input[name="name"]').val();
+                    var year     = divObject.find('input[name="year"]').val();
+                    var month    = divObject.find('input[name="month"]').val();
+                    var invest   = divObject.find('input[name="invest"]').val();
+                    var progress = divObject.find('input[name="progress"]').val();
+                    var problem  = divObject.find('input[name="problem"]').val();
+                    var remark   = divObject.find('input[name="remark"]').val();
+                    var photo    = divObject.find('input[name="photo"]').val();
+                    var responsible_for = divObject.find('input[name="responsible_for"]').val();
+                    var htmlString = '<tr>\
+                    <td class="col-md-3" align="right"><b>年度</b></td>\
+                    <td align="left">{0}</td></tr>\
+                    <td align="right"><b>月份</b></td>\
+                    <td align="left">{1}</td></tr>\
+                    <td align="right"><b>月完成投资（万元）</b></td>\
+                    <td align="left">{2}</td></tr>\
+                    <td align="right"><b>目前进度</b></td>\
+                    <td align="left">{3}</td></tr>\
+                    <td align="right"><b>存在问题</b></td>\
+                    <td align="left">{4}</td></tr>\
+                    <td align="right"><b>备注</b></td>\
+                    <td align="left">{5}</td></tr>\
+                    <td align="right"><b>图片<b></td>\
+                    <td align="left"><img src="{6}" width="600px"/></td></tr>\
+                    '.format(year,month,invest,progress,problem,remark,photo);
+
+                if (photo === undefined){
+                    htmlString = '<tr>\
+                                 <td class="col-md-3" align="right"><b>年度</b></td>\
+                                 <td align="left">{0}</td></tr>\
+                                 <td align="right"><b>月份</b></td>\
+                                 <td align="left">{1}</td></tr>\
+                                 <td align="right"><b>月完成投资（万元）</b></td>\
+                                 <td align="left">{2}</td></tr>\
+                                 <td align="right"><b>目前进度</b></td>\
+                                 <td align="left">{3}</td></tr>\
+                                 <td align="right"><b>存在问题</b></td>\
+                                 <td align="left">{4}</td></tr>\
+                                 <td align="right"><b>备注</b></td>\
+                                 <td align="left">{5}</td></tr>\
+                                 '.format(year,month,invest,progress,problem,remark);
+
+                }    
+
+                $("#progress_detail").html(htmlString);
+                if ($(this).val()===""){
+                    $("#progress_detail").html('');
+                }
+                });
+
             });
 
-        });
-
-});
+    });
 </script>
 {% endblock %}
 {% block custom_style %}
@@ -100,107 +100,102 @@ $(function(){
     .table td[align=left] {
         padding-left:25px;
     }
+    .scroll {
+        height:450px;
+        overflow:auto;
+        position:relative;
+    }
 </style>
 {% endblock %}
 
 {% block header_title %}
-项目进度详情
+项目进度详细情况
 {% endblock %}
 
 {% block main_content %}
 <div class="container well" >
-
-</div>
-<table width="96%" height="60" border="0" cellpadding="0" cellspacing="0" align="center">
-    <tbody><tr>
-            <td align="center" class="dh2_font" style="font-size:16px;">
-                <span id="ctl00_ContentPlaceHolder1_lblTitle">
-                    {{project.project_name}}
-                </span>
-            </td>
-        </tr>
-</tbody></table>
-<table width="95%" height="15" border="0" cellspacing="0" cellpadding="0" align="center">
-    <tbody><tr>
-            <td>
-                <div id="ctl00_ContentPlaceHolder1_divImgs"><center></center></div>
-            </td>
-        </tr>
-</tbody></table>
-<div class="overview">
-    <table class="table table-hover">
-        <tr>
-            <td class="col-md-3" align="right">
-                <b>项目名称</b></td>
-            <td align="left">{{project.project_name}}</td>
-        </tr>
-        <tr>
-            <td align="right">
-                <b>实施年限</b>
-            </td>
-            <td align="left">
-                {{project.start_time}}~{{project.completed_time}}
-            </td>
-        </tr>
-        <tr>
-            <td align="right">
-                <b>总投资<b>
-                    </td>
-                    <td align="left">
-                        {{project.planed_invest}}
-                    </td>
-                </tr>
-                <tr>
-                    <td align="right">
-                        <b>2012实施内容</b>
-                    </td>
-                    <td align="left">
-                        {{project.year_content}}
-                    </td>
-                </tr>
-                <tr>
-                    <td align="right">
-                        <b>责任部门</b>
-                    </td>
-                    <td align="left">
-                        {{project.response_for}}
-                    </td>
-                </tr>
-                <tr>
-                    <td align="right">
-                        <b>项目进度</b>
-                    </td>
-                    <td>
-                        <div class="col-lg-5">
-                            <select class="form-control" title='请选择以下选项...' data-live-search="true" name="progress_list">
-                                <option value="">------------</option>
-                                {% for p in progress_list %}
-                                <option value="{{p.id}}">{{p.name}} {{p.year}}年 {{p.month}}月</option>
-                                {% endfor %}
-                            </select>
-                        </div>
-                        <div style="display:none">
-                            {% for p in progress_list %}
-                            <div id="progress_{{p.id}}" >
-                                <input type="text" name="name" value="{{p.name}}" />
-                                <input type="text" name="year" value="{{p.year}}" />
-                                <input type="text" name="month" value="{{p.month}}" />
-                                <input type="text" name="invest" value="{{p.invest}}" />
-                                <input type="text" name="progress" value="{{p.progress}}" />
-                                <input type="text" name="problem" value="{{p.problem}}" />
-                                <input type="text" name="remark" value="{{p.remark}}" />
-                                {% if p.photo %}
-                                <input type="text" name="photo" value="{{p.photo.url}}" />
-                                {% endif %}
-                                <input type="text" name="responsible_for" value="{{p.responsible_for}}" />
+    <ul class="breadcrumb">
+        <li>
+        <a href="{% url mysite.views.search_view %}">项目概况查询</a>
+        <span class="divider">/</span>
+        </li>
+        <li>
+        {{project.project_name}}
+        </li>
+    </ul>
+    <div class="container-fluid">
+        <div class="row-fluid">
+            <div class="span3">
+                <dl class="">
+                    <dt>项目名称</dt>
+                    <dd>
+                    {{project.project_name}} &nbsp;
+                    </dd>
+                    <dt>实施年限</dt>
+                    <dd>
+                    {% if project.start_time or project.completed_time %}
+                    {{project.start_time}}~{{project.completed_time}}
+                    {% endif %} &nbsp;
+                    </dd>
+                    <dt>总投资</dt>
+                    <dd>{{project.planed_invest}} &nbsp;</dd>
+                    <dt>2012实施内容</dt>
+                    <dd>{{project.year_content}} &nbsp;</dd>
+                    <dt>责任部门</dt>
+                    <dd>{{project.response_for}} &nbsp;</dd>
+                </dl>
+            </div>
+            <div class="span9">
+                <div class="scroll">
+                    <div class="accordion" id="accordion-list" >
+                        {% for p in progress_list %}
+                        <div class="accordion-group">
+                            <div class="accordion-heading">
+                                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion-list" href="#collapse_{{p.id}}">{{p.name}} {{p.year}}-{{p.month}}</a>
                             </div>
-                            {% endfor %}
+                            <div id="collapse_{{p.id}}" class="accordion-body collapse">
+                                <div class="accordion-inner">
+                                    <dl class="dl-horizontal">
+                                    	<dt>年度</dt>
+                                        <dd>{{p.year}}</dd>
+                                    	<dt>月份</dt>
+                                        <dd>{{p.month}}</dd>
+                                    	<dt>月完成投资（万元）</dt>
+                                        <dd>{{p.invest}}</dd>
+                                    	<dt>目前进度</dt>
+                                        <dd>{{p.progress}}</dd>
+                                    	<dt>存在问题</dt>
+                                        <dd>{{p.problem}}</dd>
+                                    	<dt>备注</dt>
+                                        <dd>{{p.remark}}</dd>
+                                    </dl>
+                                    {% if p.photo_list %}
+                                    <div id="mycarousel_{{forloop.counter}}" class="carousel slide">
+                                        <ol class="carousel-indicators">
+                                            {% for photo in p.photo_list %}
+                                            <li data-target="#mycarousel_{{forloop.parentloop.counter}}" data-slide-to="{{forloop.counter}}" class="active"></li>
+                                            {% endfor %}
+                                        </ol>
+                                        <div class="carousel-inner">
+                                            {% for photo in p.photo_list %}
+                                            <div class="item {% ifequal forloop.counter 1 %}active{% endifequal %}">
+                                                <img src="/d-media/{{photo}}" class="img-rounded" style="width:800px;height:400px" alt="" />
+                                            </div>
+                                            {% endfor %}
+                                        </div>
+                                        <a href="#mycarousel_{{forloop.counter}}" class="carousel-control left" data-slide="prev">&lsaquo;</a>
+                                        <a href="#mycarousel_{{forloop.counter}}" class="carousel-control right" data-slide="next">&rsaquo;</a>
+                                    </div>
+                                    {% endif %}
+                                </div>
+                            </div>
                         </div>
-                    </td>
-                </tr>
-            </table>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
         </div>
-        <table id="progress_detail" class="table table-hover" width="100%" border="0" cellpadding="0" cellspacing="0" align="center">
-        </table>
-        {% endblock %}
+    </div>
+</div>
+{% endblock %}
 
