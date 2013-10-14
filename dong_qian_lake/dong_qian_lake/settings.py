@@ -77,6 +77,8 @@ STATICFILES_DIRS = (
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
     os.path.join(APP_ROOT,'../mysite/static'),
+    os.path.join(APP_ROOT,'../src/v1/static'),
+    os.path.join(APP_ROOT,'../src/v2/static'),
 )
 
 # List of finder classes that know how to find static files in
@@ -117,6 +119,8 @@ TEMPLATE_DIRS = (
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
     os.path.join(APP_ROOT,'../mysite/templates'),
+    os.path.join(APP_ROOT,'../src/v1/templates'),
+    os.path.join(APP_ROOT,'../src/v2/templates'),
 )
 
 INSTALLED_APPS = (
@@ -129,6 +133,7 @@ INSTALLED_APPS = (
     # Uncomment the next line to enable the admin:
      'django.contrib.admin',
      'mysite',
+     'src.v2',
      'storages',
      'south',
     # Uncomment the next line to enable admin documentation:
