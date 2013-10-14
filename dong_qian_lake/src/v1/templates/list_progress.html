@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% block title %}进度列表{% endblock %}
+{% block custom_script %}{% endblock %}
+{% block custom_style%}
+<style type="text/css">
+    .table thead>tr>th, .table tbody>tr>th, .table tfoot>tr>th, .table thead>tr>td, .table tbody>tr>td, .table tfoot>tr>td {
+        border-top:none;
+    }
+
+</style>
+{% endblock %}
+
+{% block main_content%}
+<div class="panel panel-default">
+    <div class="panel-heading" align="left">
+        <div>
+            <p>
+            进度列表 
+            </p>
+            <a href="/progress/new">[ 新增 项目进度 ]</a>
+        </div>
+    </div>
+    <div class="panel-body">
+        <table class="table table-condensed">
+            {% for data in query_list %}
+            <tr>
+                <td class="col-xs-1">
+                    <a href="/progress/delete/{{data.id}}/">[删除]</a>
+                </td>
+                <td align="left">
+                    <a href="/progress/edit/{{data.id}}">{{data.name}} [{{data.year}}-{{data.month}}]</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+    <div class="panel-footer">
+        <ul class="pager">
+            {% if query_list.has_previous %}
+            <li class="previous">
+            <a href="?page={{ query_list.previous_page_number }}">前一页</a>
+            </li>
+            {% endif %}
+
+            <!--                <span class="current">-->
+                <!--                    Page {{ contacts.number }} of {{ contacts.paginator.num_pages }}.-->
+                <!--                </span>-->
+
+            {% if query_list.has_next %}
+            <li class="next">
+            <a href="?page={{ query_list.next_page_number }}">下一页</a>
+            </li>
+            {% endif %}
+        </ul>
+
+    </div>
+</div>
+{% endblock %}
+
+
+

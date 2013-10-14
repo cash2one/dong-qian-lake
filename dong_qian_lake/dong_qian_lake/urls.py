@@ -7,7 +7,8 @@ admin.autodiscover()
 urlpatterns = patterns('',
     # Examples:
     # url(r'^$', 'dong_qian_lake.views.home', name='home'),
-     url(r'', include('mysite.urls')),
+     url(r'^v1/', include('src.v1.urls')),
+     url(r'^v2/', include('src.v2.urls')),
      url(r'^static/(?P<path>.*)$', 'django.views.static.serve',{'document_root':STATIC_ROOT}),
      url(r'^d-media/(?P<path>.*)$', 'django.views.static.serve',{'document_root':MEDIA_ROOT}),
 

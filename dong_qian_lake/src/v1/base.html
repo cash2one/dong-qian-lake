@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="http://www.dqlake.gov.cn/zdgc/images/css.css" />
+    <link rel="stylesheet" href="http://www.dqlake.gov.cn/zdgc/images/bgchange.css" />
+    <script type="text/javascript" src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+    {% block custom_style %}
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-theme.min.css">
+    {% endblock %}
+
+    {% block custom_script %}
+    <script type="text/javascript" src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+    {% endblock %}
+</head>
+<body>
+    <div class="container">
+        <div class="center">
+        <img src="http://www.dqlake.gov.cn/zdgc/images/top.jpg" alt="head-image"  />
+        </div> 
+    </div>	
+</body>
+</html>
