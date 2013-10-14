@@ -20,7 +20,7 @@
 <div class="container well">
     <ul class="breadcrumb">
         <li>
-        <a href="{% url mysite.views.search_view %}">项目概况查询</a>
+        <a href="{% url src.v2.views.search_view %}">项目概况查询</a>
         <span class="divider">/</span>
         </li>
         <li class="active">
@@ -31,17 +31,17 @@
     </ul>
     <ul class="nav nav-pills">
         <li class="active">
-        <a href="{% url mysite.views.add_progress_view %}">新增 项目进度</a>
+        <a href="{% url src.v2.views.add_progress_view %}">新增 项目进度</a>
         </li>
     </ul>
     <table class="table">
         {% for data in query_list %}
         <tr>
             <td class="span1">
-                <a href="{% url mysite.views.delete_progress_view data.id %}">删除</a>
+                <a href="{% url src.v2.views.delete_progress_view data.id %}">删除</a>
             </td>
             <td>
-                <a href="{% url mysite.views.edit_progress_view data.id %}">{{data.name}} {{data.year}} {{data.month}}</a>
+                <a href="{% url src.v2.views.edit_progress_view data.id %}">{{data.name}} {{data.year}} {{data.month}}</a>
             </td>
         </tr>
         {% endfor %}
@@ -53,7 +53,7 @@
             <a href="?page={{ query_list.previous_page_number }}">&laquo;</a>
             </li>
             <li>
-            <a href="{% url mysite.views.list_progress_view%}?{{url}}&page={{query_list.previous_page_number}}">{{query_list.previous_page_number}}</a>
+            <a href="{% url src.v2.views.list_progress_view%}?{{url}}&page={{query_list.previous_page_number}}">{{query_list.previous_page_number}}</a>
 
             </li>
             {% endif %}
@@ -61,7 +61,7 @@
 
             {% if query_list.has_next %}
             <li> 
-            <a href="{% url mysite.views.list_progress_view %}?{{url}}&page={{query_list.next_page_number}}">{{query_list.next_page_number}}</a>
+            <a href="{% url src.v2.views.list_progress_view %}?{{url}}&page={{query_list.next_page_number}}">{{query_list.next_page_number}}</a>
 
             <li class="next">
             <a href="?page={{ query_list.next_page_number }}">&raquo;</a>

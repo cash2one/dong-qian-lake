@@ -126,7 +126,7 @@ input:not([type="submit"]),select {
                     </li>
                     {% if user.is_staff %}
                     <li>
-                    <a href="{% url mysite.views.add_overview_view %}">新增 项目概况</a> 
+                    <a href="{% url src.v2.views.add_overview_view %}">新增 项目概况</a> 
                     </li>
                     {% endif %}
                 </ul>
@@ -136,10 +136,10 @@ input:not([type="submit"]),select {
                                                     <ul>
                                                         {% if query_list.has_previous %}
                                                         <li>
-                                                        <a href="{% url mysite.views.search_view %}?{{url}}&page={{query_list.previous_page_number}}">&laquo;</a>
+                                                        <a href="{% url src.v2.views.search_view %}?{{url}}&page={{query_list.previous_page_number}}">&laquo;</a>
                                                         </li>
                                                         <li>
-                                                        <a href="{% url mysite.views.search_view %}?{{url}}&page={{query_list.previous_page_number}}">{{query_list.previous_page_number}}</a>
+                                                        <a href="{% url src.v2.views.search_view %}?{{url}}&page={{query_list.previous_page_number}}">{{query_list.previous_page_number}}</a>
                                                         </li>
                                                         {% endif %}
                                                         {% ifequal query_list.number 1 %}
@@ -150,10 +150,10 @@ input:not([type="submit"]),select {
                                                         {% endifequal %}
                                                         {% if query_list.has_next %}
                                                         <li> 
-                                                        <a href="{% url mysite.views.search_view %}?{{url}}&page={{query_list.next_page_number}}">{{query_list.next_page_number}}</a>
+                                                        <a href="{% url src.v2.views.search_view %}?{{url}}&page={{query_list.next_page_number}}">{{query_list.next_page_number}}</a>
                                                         </li>
                                                         <li>
-                                                        <a href="{% url mysite.views.search_view %}?{{url}}&page={{query_list.next_page_number}}">&raquo;</a>
+                                                        <a href="{% url src.v2.views.search_view %}?{{url}}&page={{query_list.next_page_number}}">&raquo;</a>
                                                         </li>
                                                         {% endif %}
                                                     </ul>
@@ -163,17 +163,17 @@ input:not([type="submit"]),select {
                             <tr>
                                 {% if user.is_staff %}
                                 <td class="span1">
-                                    <a href="{% url mysite.views.edit_overview_view data.id %}">编辑</a>
+                                    <a href="{% url src.v2.views.edit_overview_view data.id %}">编辑</a>
                                 </td>
                                 <td class="span1">
-                                    <a href="{% url mysite.views.delete_overview_view data.id %}">删除</a>
+                                    <a href="{% url src.v2.views.delete_overview_view data.id %}">删除</a>
                                 </td>
                                 <td class="span1">
-                                    <a href="{% url mysite.views.list_progress_view %}?foreignkey={{data.id}}">进度</a>
+                                    <a href="{% url src.v2.views.list_progress_view %}?foreignkey={{data.id}}">进度</a>
                                 </td>
                                 {% endif %}
                                 <td>
-                                    <a href="{% url mysite.views.detail_view %}?id={{data.id}}">{{data.project_name}}</a>
+                                    <a href="{% url src.v2.views.detail_view %}?id={{data.id}}">{{data.project_name}}</a>
                                 </td>
                             </tr>
                             {% endfor %}

@@ -51,18 +51,18 @@ background-color:#fff;
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a href="{% url mysite.views.search_view %}" class="brand">东钱湖旅游管理委员会</a>
+            <a href="{% url src.v2.views.search_view %}" class="brand">东钱湖旅游管理委员会</a>
             <div class="nav-collapse collapse" >
                 {% block user %}
                 <p class="navbar-text pull-right">
                 您好 {{user}} 
                 <span class="divider">/</span>
-                <a href="{% url mysite.views.logout_view %}" class="navbar-link">注销</a>
+                <a href="{% url src.v2.views.logout_view %}" class="navbar-link">注销</a>
                 </p>
                 {% endblock %}
                 <ul class="nav">
                     <li class="active">
-                    <a href="{% url mysite.views.search_view %}">首页</a>
+                    <a href="{% url src.v2.views.search_view %}">首页</a>
                     </li>
                     <li>
 <!--                    <a href="#">关于</a>-->
