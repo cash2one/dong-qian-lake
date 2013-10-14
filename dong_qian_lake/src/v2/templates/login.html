@@ -43,7 +43,7 @@
     {% if next %}
     <input type="hidden" name="next" value="{{next}}" />
     {% else %}
-    <input type="hidden" name="next" value="/search" />
+    <input type="hidden" name="next" value="{% url src.v2.search_view %}" />
     {% endif %}
 
             <input type="text" class="input-block-level" id="inputEmail" placeholder="请输入帐号" name="username">
