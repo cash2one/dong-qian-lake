@@ -35,7 +35,7 @@
                 <a href="{% url src.v2.views.delete_progress_view data.id %}">删除</a>
             </td>
             <td>
-                <a href="{% url src.v2.views.edit_progress_view data.id %}">{{data.name}} {{data.year}} {{data.month}}</a>
+                <a href="{% url src.v2.views.edit_progress_view data.id %}"> [{{data.year}}-{{data.month}}] {{data.name}}</a>
             </td>
         </tr>
         {% endfor %}

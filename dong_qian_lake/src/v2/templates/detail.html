@@ -181,7 +181,7 @@
                             {% for p in progress_list %}
                             <div class="accordion-group">
                                 <div class="accordion-heading">
-                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion-list" href="#collapse_{{p.id}}">{{p.name}} {{p.year}}-{{p.month}}</a>
+                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion-list" href="#collapse_{{p.id}}">[{{p.year}}-{{p.month}}] {{p.name}} </a>
                                 </div>
                                 <div id="collapse_{{p.id}}" class="accordion-body collapse">
                                     <div class="accordion-inner">
