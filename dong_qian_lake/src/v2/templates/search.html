@@ -2,44 +2,44 @@
 {% block title %}项目检索{% endblock %}
 {% block custom_style %}
 <style type="text/css">
-.form-content {
-    padding:5px 1px 5px 1px;
-}
-.form-row {
-    overflow:hidden;
-    padding:8px 2px;
-    font-size:11px;
-    border-bottom:0 solid #eee;
-    font-family: "Lucida Grande","DejaVu Sans","Bitstream Vera Sans",Verdana,Arial,sans-serif;
-}
-label {
-    display:block;
-    padding:3px 10px 0 0;
-    float:left;
-    width:8em;
-    cursor: default;;
-}
-input:not([type="submit"]),select {
-    width:100px;
-    margin: 2px 0;
-    padding: 2px 3px;
-    vertical-align: middle;
-    font-family: "Lucida Grande", Verdana, Arial, sans-serif;
-    font-weight: normal;
-    font-size: 11px;
-      }
+    .form-content {
+        padding:5px 1px 5px 1px;
+    }
+    .form-row {
+        overflow:hidden;
+        padding:8px 2px;
+        font-size:11px;
+        border-bottom:0 solid #eee;
+        font-family: "Lucida Grande","DejaVu Sans","Bitstream Vera Sans",Verdana,Arial,sans-serif;
+    }
+    label {
+        display:block;
+        padding:3px 10px 0 0;
+        float:left;
+        width:8em;
+        cursor: default;;
+    }
+    input:not([type="submit"]),select {
+        width:100px;
+        margin: 2px 0;
+        padding: 2px 3px;
+        vertical-align: middle;
+        font-family: "Lucida Grande", Verdana, Arial, sans-serif;
+        font-weight: normal;
+        font-size: 11px;
+    }
 
-      .submit-row {
-          clear:both;
-          padding:1em 0 0 9.4em;
-      }
-      input[type="submit"] {
-          background: white url(http://oss-storage.oss.aliyuncs.com/admin/img/nav-bg.gif) bottom repeat-x;
-          padding: 3px 5px;
-          color: black;
-          border: 1px solid #bbb;
-          border-color: #ddd #aaa #aaa #ddd;
-      }
+    .submit-row {
+        clear:both;
+        padding:1em 0 0 9.4em;
+    }
+    input[type="submit"] {
+        background: white url(http://oss-storage.oss.aliyuncs.com/admin/img/nav-bg.gif) bottom repeat-x;
+        padding: 3px 5px;
+        color: black;
+        border: 1px solid #bbb;
+        border-color: #ddd #aaa #aaa #ddd;
+    }
 
 </style>
 {% endblock %}
@@ -132,32 +132,6 @@ input:not([type="submit"]),select {
                 </ul>
                 <div class="tab-content">
                     <div class="tab-pane active" id="tab1">
-                                                <div class="pagination">
-                                                    <ul>
-                                                        {% if query_list.has_previous %}
-                                                        <li>
-                                                        <a href="{% url src.v2.views.search_view %}?{{url}}&page={{query_list.previous_page_number}}">&laquo;</a>
-                                                        </li>
-                                                        <li>
-                                                        <a href="{% url src.v2.views.search_view %}?{{url}}&page={{query_list.previous_page_number}}">{{query_list.previous_page_number}}</a>
-                                                        </li>
-                                                        {% endif %}
-                                                        {% ifequal query_list.number 1 %}
-                                                        {% else %}
-                                                        <li>
-                                                        <a href="#">{{query_list.number}}</a>
-                                                        </li>
-                                                        {% endifequal %}
-                                                        {% if query_list.has_next %}
-                                                        <li> 
-                                                        <a href="{% url src.v2.views.search_view %}?{{url}}&page={{query_list.next_page_number}}">{{query_list.next_page_number}}</a>
-                                                        </li>
-                                                        <li>
-                                                        <a href="{% url src.v2.views.search_view %}?{{url}}&page={{query_list.next_page_number}}">&raquo;</a>
-                                                        </li>
-                                                        {% endif %}
-                                                    </ul>
-                                                </div>
                         <table class="table ">
                             {% for data in query_list %}
                             <tr>
@@ -178,10 +152,40 @@ input:not([type="submit"]),select {
                             </tr>
                             {% endfor %}
                         </table>
+                        <div class="pagination">
+                            <ul>
+                                {% if query_list.has_previous %}
+                                <li>
+                                <a href="{% url src.v2.views.search_view %}?{{url}}&page={{query_list.previous_page_number}}">&laquo;</a>
+                                </li>
+                                <li>
+                                <a href="{% url src.v2.views.search_view %}?{{url}}&page={{query_list.previous_page_number}}">{{query_list.previous_page_number}}</a>
+                                </li>
+                                {% endif %}
+                                {% ifequal query_list.number 1 %}
+                                <li>
+                                <a href="#">1</a>
+                                </li>
+                                {% else %}
+                                <li>
+                                <a href="#">{{query_list.number}}</a>
+                                </li>
+                                {% endifequal %}
+                                {% if query_list.has_next %}
+                                <li> 
+                                <a href="{% url src.v2.views.search_view %}?{{url}}&page={{query_list.next_page_number}}">{{query_list.next_page_number}}</a>
+                                </li>
+                                <li>
+                                <a href="{% url src.v2.views.search_view %}?{{url}}&page={{query_list.next_page_number}}">&raquo;</a>
+                                </li>
+                                {% endif %}
+                            </ul>
+                        </div>
+
                         <p> 
-                                                {{query_list.number}}/{{query_list.paginator.num_pages}}页,
-                                                共有{{query_list.paginator.count}}条记录
-                                                </p>
+                        {{query_list.number}}/{{query_list.paginator.num_pages}}页,
+                        共有{{query_list.paginator.count}}条记录
+                        </p>
                     </div>
                 </div>
             </div>

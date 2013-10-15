@@ -30,7 +30,7 @@ class ProgressForm(ModelForm):
             if k == 'problem' or k=='remark':
                 v.widget.attrs.update({'rows':'3'})
             if k == 'project':
-                v.widget.attrs.update({'class':'form-control selectpicker','data-live-search':'true'})
+                v.widget.attrs.update({'class':'form-control selectpicker span3','data-live-search':'true'})
 
     class Meta:
         model = ProjectProgress
@@ -41,7 +41,6 @@ def add_progress_view(request):
 
     if request.POST:
         f = ProgressForm(request.POST,request.FILES)
-
         if f.is_valid():
             f.save()
             return redirect(search_view)
@@ -75,7 +74,7 @@ def add_overview_view(request):
 
         if f.is_valid():
             f.save()
-            return resirect(search_view)
+            return redirect(search_view)
     return manage_render_to_response(request,'new_overview.html',{'form':f})
 
 @login_required
@@ -129,7 +128,7 @@ def search_view(request):
     if invest_subject:
         query_list = query_list.filter(invest_subject__contains=invest_subject)
     
-    paginator = Paginator(query_list,20)
+    paginator = Paginator(query_list,10)
 
     try:
         projects = paginator.page(page)
@@ -179,7 +178,7 @@ def list_progress_view(request):
         p = ProjectOverView.objects.get(pk=foreign_key)
         query_list = query_list.filter(project=p)
 
-    paginator = Paginator(query_list,20)
+    paginator = Paginator(query_list,10)
 
     try:
         query_list = paginator.page(page)

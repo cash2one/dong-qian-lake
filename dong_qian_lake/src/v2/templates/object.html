@@ -4,6 +4,10 @@
 {% block custom_script %}
 <script type="text/javascript" src="http://oss-storage.oss.aliyuncs.com/bootstrap-wysihtml5/dist/bootstrap-wysihtml5-0.0.2.js"></script>
 <script type="text/javascript">
+    $(function(){
+            $("#add_overview").tooltip();
+            $(".selectpicker").selectpicker();
+            });
 </script>
 {% endblock %}
 {% block custom_style %}
@@ -49,24 +53,28 @@
         </li>
     </ul>
     <div class="form-content">
-        <form role="form" class="form-horizontal" action="" method="post">
+        <form role="form" class="form-horizontal" action=""  enctype="multipart/form-data" method="post">
            <legend></legend> 
             <fieldset>
                 {{form.non_field_errors}}
                 {% csrf_token %}
                 {% for field in form %}
                 <div class="control-group">
+                    <div class="controls">
                     {{field.errors}}
+                    </div>
                     {% ifequal field.label '项目概况' %}
                     <label for="id_name" class="control-label">{{field.label}}</label>
                     <div class="controls">
                         {{field}}
+                        &nbsp;&nbsp;
+                        <a id="add_overview" href="{% url src.v2.views.add_overview_view %}" target="_blank" data-toggle="tooltip" data-placement="top" title="" data-original-title="新增 项目概况">
+                        <i class="icon-plus">
+                        </i>
+                        </a>
                     </div>
-                    <div class="">
-                        <button type="button" class="btn btn-default">
-                            <span class="glyphicon glyphicon-plus"></span>
-                        </button>
-                    </div>
+<!--                    <div class="">-->
+<!--                    </div>-->
                     {% else %}
                     <label for="id_name" class="control-label">{{field.label}}</label>
                     <div class="controls">

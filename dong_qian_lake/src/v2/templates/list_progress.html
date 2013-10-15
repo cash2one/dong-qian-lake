@@ -11,12 +11,6 @@
 {% endblock %}
 
 {% block main_content%}
-<div class="subhead">
-    <div class="container">
-        <h3>进度列表</h3>
-        <p class="lead"></p>
-    </div>
-</div>
 <div class="container well">
     <ul class="breadcrumb">
         <li>
@@ -58,6 +52,15 @@
             </li>
             {% endif %}
 
+            {% ifequal query_list.number 1 %}
+            <li>
+            <a href="#">1</a>
+            </li>
+            {% else %}
+            <li>
+            <a href="#">{{query_list.number}}</a>
+            </li>
+            {% endifequal %}
 
             {% if query_list.has_next %}
             <li> 
@@ -69,7 +72,7 @@
             {% endif %}
         </ul>
     </div>
-    <p class="pull-right" >
+    <p>
     {{ query_list.number }}/{{ query_list.paginator.num_pages }}页,共有{{query_list.paginator.count}}条记录
     </p>
 </div>
