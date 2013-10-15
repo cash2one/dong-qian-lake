@@ -3,6 +3,7 @@ from views import *
 
 urlpatterns = patterns(
         '',
+        (r'^$',search_view),
         (r'^accounts/login/$','django.contrib.auth.views.login',{'template_name':'login.html'}),
         (r'^accounts/logout/$',logout_view),
         
