@@ -105,97 +105,127 @@
         overflow:auto;
         position:relative;
     }
-</style>
-{% endblock %}
+    .sidebar {
+        width: 228px;
+        margin: 30px 0 0;
+        padding: 0;
+        background-color: #fff;
+        -webkit-border-radius: 6px;
+        -moz-border-radius: 6px;
+        border-radius: 6px;
+        border: 1px solid #ddd;
+        -webkit-box-shadow: 0 1px 4px rgba(0,0,0,.065);
+        -moz-box-shadow: 0 1px 4px rgba(0,0,0,.065);
+        box-shadow: 0 1px 4px rgba(0,0,0,.065);
 
-{% block header_title %}
-项目进度详细情况
-{% endblock %}
+        }
+        .dl-horizontal dt {
+        float: left;
+        width: 100px;
+        overflow: hidden;
+        clear: left;
+        text-align: right;
+        text-overflow: ellipsis;
+        white-space: nowrap;
 
-{% block main_content %}
-<div class="container well" >
-    <ul class="breadcrumb">
-        <li>
-        <a href="{% url src.v2.views.search_view %}">项目概况查询</a>
-        <span class="divider">/</span>
-        </li>
-        <li>
-        {{project.project_name}}
-        </li>
-    </ul>
-    <div class="container-fluid">
-        <div class="row-fluid">
-            <div class="span3">
-                <dl class="">
-                    <dt>项目名称</dt>
-                    <dd>
-                    {{project.project_name}} &nbsp;
-                    </dd>
-                    <dt>实施年限</dt>
-                    <dd>
-                    {% if project.start_time or project.completed_time %}
-                    {{project.start_time}}~{{project.completed_time}}
-                    {% endif %} &nbsp;
-                    </dd>
-                    <dt>总投资</dt>
-                    <dd>{{project.planed_invest}} &nbsp;</dd>
-                    <dt>2012实施内容</dt>
-                    <dd>{{project.year_content}} &nbsp;</dd>
-                    <dt>责任部门</dt>
-                    <dd>{{project.response_for}} &nbsp;</dd>
-                </dl>
-            </div>
-            <div class="span9">
-                <div class="scroll">
-                    <div class="accordion" id="accordion-list" >
-                        {% for p in progress_list %}
-                        <div class="accordion-group">
-                            <div class="accordion-heading">
-                                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion-list" href="#collapse_{{p.id}}">{{p.name}} {{p.year}}-{{p.month}}</a>
-                            </div>
-                            <div id="collapse_{{p.id}}" class="accordion-body collapse">
-                                <div class="accordion-inner">
-                                    <dl class="dl-horizontal">
-                                    	<dt>年度</dt>
-                                        <dd>{{p.year}}</dd>
-                                    	<dt>月份</dt>
-                                        <dd>{{p.month}}</dd>
-                                    	<dt>月完成投资（万元）</dt>
-                                        <dd>{{p.invest}}</dd>
-                                    	<dt>目前进度</dt>
-                                        <dd>{{p.progress}}</dd>
-                                    	<dt>存在问题</dt>
-                                        <dd>{{p.problem}}</dd>
-                                    	<dt>备注</dt>
-                                        <dd>{{p.remark}}</dd>
-                                    </dl>
-                                    {% if p.photo_list %}
-                                    <div id="mycarousel_{{forloop.counter}}" class="carousel slide">
-                                        <ol class="carousel-indicators">
-                                            {% for photo in p.photo_list %}
-                                            <li data-target="#mycarousel_{{forloop.parentloop.counter}}" data-slide-to="{{forloop.counter}}" class="active"></li>
-                                            {% endfor %}
-                                        </ol>
-                                        <div class="carousel-inner">
-                                            {% for photo in p.photo_list %}
-                                            <div class="item {% ifequal forloop.counter 1 %}active{% endifequal %}">
-                                                <img src="/d-media/{{photo}}" class="img-rounded" style="width:800px;height:400px" alt="" />
+        }
+        .dl-horizontal dd {
+        margin-left: 110px;
+        }
+
+    </style>
+    {% endblock %}
+
+    {% block header_title %}
+    项目进度详细情况
+    {% endblock %}
+
+    {% block main_content %}
+    <div class="container well" >
+        <ul class="breadcrumb">
+            <li>
+            <a href="{% url src.v2.views.search_view %}">项目概况查询</a>
+            <span class="divider">/</span>
+            </li>
+            <li>
+            {{project.project_name}}
+            </li>
+        </ul>
+        <div class="container-fluid">
+            <div class="row-fluid">
+                <div class="span3">
+                    <div class="nav nav-list sidebar">
+                        <dl class="dl-horizontal">
+                            <dt>项目名称</dt>
+                            <dd>
+                            {{project.project_name}} &nbsp;
+                            </dd>
+                            <dt>实施年限</dt>
+                            <dd>
+                            {% if project.start_time or project.completed_time %}
+                            {{project.start_time}}~{{project.completed_time}}
+                            {% endif %} &nbsp;
+                            </dd>
+                            <dt>总投资</dt>
+                            <dd>{{project.planed_invest}} &nbsp;</dd>
+                            <dt>2012实施内容</dt>
+                            <dd>{{project.year_content}} &nbsp;</dd>
+                            <dt>责任部门</dt>
+                            <dd>{{project.response_for}} &nbsp;</dd>
+                        </dl>
+                    </div>
+                </div>
+                <div class="span9">
+                    <div class="scroll">
+                        <div class="accordion" id="accordion-list" >
+                            {% for p in progress_list %}
+                            <div class="accordion-group">
+                                <div class="accordion-heading">
+                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion-list" href="#collapse_{{p.id}}">{{p.name}} {{p.year}}-{{p.month}}</a>
+                                </div>
+                                <div id="collapse_{{p.id}}" class="accordion-body collapse">
+                                    <div class="accordion-inner">
+                                        <dl class="dl-horizontal">
+                                            <dt>年度</dt>
+                                            <dd>{{p.year}}</dd>
+                                            <dt>月份</dt>
+                                            <dd>{{p.month}}</dd>
+                                            <dt>月完成投资（万元）</dt>
+                                            <dd>{{p.invest}}</dd>
+                                            <dt>目前进度</dt>
+                                            <dd>{{p.progress}}</dd>
+                                            <dt>存在问题</dt>
+                                            <dd>{{p.problem}}</dd>
+                                            <dt>备注</dt>
+                                            <dd>{{p.remark}}</dd>
+                                        </dl>
+                                        {% if p.photo_list %}
+                                        <div id="mycarousel_{{forloop.counter}}" class="carousel slide">
+                                            <ol class="carousel-indicators">
+                                                {% for photo in p.photo_list %}
+                                                <li data-target="#mycarousel_{{forloop.parentloop.counter}}" data-slide-to="{{forloop.counter}}" class="active"></li>
+                                                {% endfor %}
+                                            </ol>
+                                            <div class="carousel-inner">
+                                                {% for photo in p.photo_list %}
+                                                <div class="item {% ifequal forloop.counter 1 %}active{% endifequal %}">
+                                                    <img src="/d-media/{{photo}}" class="img-rounded" style="width:800px;height:400px" alt="" />
+                                                </div>
+                                                {% endfor %}
                                             </div>
-                                            {% endfor %}
+                                            <a href="#mycarousel_{{forloop.counter}}" class="carousel-control left" data-slide="prev">&lsaquo;</a>
+                                            <a href="#mycarousel_{{forloop.counter}}" class="carousel-control right" data-slide="next">&rsaquo;</a>
                                         </div>
-                                        <a href="#mycarousel_{{forloop.counter}}" class="carousel-control left" data-slide="prev">&lsaquo;</a>
-                                        <a href="#mycarousel_{{forloop.counter}}" class="carousel-control right" data-slide="next">&rsaquo;</a>
+                                        {% endif %}
                                     </div>
-                                    {% endif %}
                                 </div>
                             </div>
+                            {% endfor %}
                         </div>
-                        {% endfor %}
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
-{% endblock %}
+    {% endblock %}
 

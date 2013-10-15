@@ -2,6 +2,9 @@
 {% block title %}项目检索{% endblock %}
 {% block custom_style %}
 <style type="text/css">
+        .table thead>tr>th, .table tbody>tr>th, .table tfoot>tr>th, .table thead>tr>td, .table tbody>tr>td, .table tfoot>tr>td {
+        border-top:none;
+    }
     .form-content {
         padding:5px 1px 5px 1px;
     }
@@ -156,10 +159,10 @@
                             <ul>
                                 {% if query_list.has_previous %}
                                 <li>
-                                <a href="{% url src.v2.views.search_view %}?{{url}}&page={{query_list.previous_page_number}}">&laquo;</a>
+                                <a href="{% url src.v2.views.search_view %}?{{query_string}}&page={{query_list.previous_page_number}}">&laquo;</a>
                                 </li>
                                 <li>
-                                <a href="{% url src.v2.views.search_view %}?{{url}}&page={{query_list.previous_page_number}}">{{query_list.previous_page_number}}</a>
+                                <a href="{% url src.v2.views.search_view %}?{{query_string}}&page={{query_list.previous_page_number}}">{{query_list.previous_page_number}}</a>
                                 </li>
                                 {% endif %}
                                 {% ifequal query_list.number 1 %}
@@ -173,10 +176,10 @@
                                 {% endifequal %}
                                 {% if query_list.has_next %}
                                 <li> 
-                                <a href="{% url src.v2.views.search_view %}?{{url}}&page={{query_list.next_page_number}}">{{query_list.next_page_number}}</a>
+                                <a href="{% url src.v2.views.search_view %}?{{query_string}}&page={{query_list.next_page_number}}">{{query_list.next_page_number}}</a>
                                 </li>
                                 <li>
-                                <a href="{% url src.v2.views.search_view %}?{{url}}&page={{query_list.next_page_number}}">&raquo;</a>
+                                <a href="{% url src.v2.views.search_view %}?{{query_string}}&page={{query_list.next_page_number}}">&raquo;</a>
                                 </li>
                                 {% endif %}
                             </ul>

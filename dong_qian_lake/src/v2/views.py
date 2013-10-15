@@ -10,6 +10,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout,login
 from django.forms import ModelForm
 from django import forms
+import urllib
 
 class OverViewForm(ModelForm):
     
@@ -143,9 +144,16 @@ def search_view(request):
     for i in range(year,1999,-1):
         year_list.append(i)
 
-    url = request.get_full_path()
+    query_dict = request.GET.dict()
+
+    for k,v in query_dict.items():
+        if k == 'page':
+            query_dict.pop('page')
+
+    query_string = urllib.urlencode(query_dict)
+
     user = request.user
-    return my_render_to_response(request,'search.html',{'query_list':projects,'year_list':year_list,'url':url,'user':user})
+    return my_render_to_response(request,'search.html',{'query_list':projects,'year_list':year_list,'query_string':query_string,'user':user})
 
 def my_render_to_response(request,template,data_dict={}):
     return render_to_response(template,data_dict,context_instance=RequestContext(request))
@@ -174,6 +182,7 @@ def list_progress_view(request):
     foreign_key = request.GET.get('foreignkey','')
     page = request.GET.get('page','')
     query_list = ProjectProgress.objects.all()
+    
     if foreign_key:
         p = ProjectOverView.objects.get(pk=foreign_key)
         query_list = query_list.filter(project=p)
@@ -187,5 +196,13 @@ def list_progress_view(request):
     except EmptyPage:
         query_list = paginator.page(paginator.num_pages)
 
-    return manage_render_to_response(request,'list_progress.html',{'query_list':query_list})
+    query_dict = request.GET.dict()
+
+    for k,v in query_dict.items():
+        if k == 'page':
+            query_dict.pop('page')
+
+    query_string = urllib.urlencode(query_dict)
+
+    return manage_render_to_response(request,'list_progress.html',{'query_list':query_list,'query_string':query_string})
 

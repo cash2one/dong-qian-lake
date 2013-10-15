@@ -44,10 +44,10 @@
         <ul>
             {% if query_list.has_previous %}
             <li class="previous">
-            <a href="?page={{ query_list.previous_page_number }}">&laquo;</a>
+            <a href="{% url src.v2.views.list_progress_view %}?{{query_string}}&page={{ query_list.previous_page_number }}">&laquo;</a>
             </li>
             <li>
-            <a href="{% url src.v2.views.list_progress_view%}?{{url}}&page={{query_list.previous_page_number}}">{{query_list.previous_page_number}}</a>
+            <a href="{% url src.v2.views.list_progress_view%}?{{query_string}}&page={{query_list.previous_page_number}}">{{query_list.previous_page_number}}</a>
 
             </li>
             {% endif %}
@@ -64,10 +64,10 @@
 
             {% if query_list.has_next %}
             <li> 
-            <a href="{% url src.v2.views.list_progress_view %}?{{url}}&page={{query_list.next_page_number}}">{{query_list.next_page_number}}</a>
+            <a href="{% url src.v2.views.list_progress_view %}?{{query_string}}&page={{query_list.next_page_number}}">{{query_list.next_page_number}}</a>
 
             <li class="next">
-            <a href="?page={{ query_list.next_page_number }}">&raquo;</a>
+            <a href="{% url src.v2.views.list_progress_view %}?{{query_string}}&page={{ query_list.next_page_number }}">&raquo;</a>
             </li>
             {% endif %}
         </ul>
