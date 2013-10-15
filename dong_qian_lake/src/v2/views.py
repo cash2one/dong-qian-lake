@@ -204,5 +204,5 @@ def list_progress_view(request):
 
     query_string = urllib.urlencode(query_dict)
 
-    return manage_render_to_response(request,'list_progress.html',{'query_list':query_list,'query_string':query_string})
+    return manage_render_to_response(request,'list_progress.html',{'query_list':query_list,'query_string':query_string,'overview':p})
 
