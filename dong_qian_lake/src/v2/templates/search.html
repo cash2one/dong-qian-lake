@@ -161,25 +161,31 @@
                                 <li>
                                 <a href="{% url src.v2.views.search_view %}?{{query_string}}&page={{query_list.previous_page_number}}">&laquo;</a>
                                 </li>
-                                <li>
-                                <a href="{% url src.v2.views.search_view %}?{{query_string}}&page={{query_list.previous_page_number}}">{{query_list.previous_page_number}}</a>
+                                {% else %}
+                                <li class="disabled">
+                                	<a href="#">&laquo</a>
                                 </li>
                                 {% endif %}
-                                {% ifequal query_list.number 1 %}
-                                <li>
-                                <a href="#">1</a>
+                                
+                                {% for num in query_list.page_range %}
+                                {% if not num %}
+                                <li class="disabled">
+                                <a href="#">...</a>
                                 </li>
                                 {% else %}
                                 <li>
-                                <a href="#">{{query_list.number}}</a>
+                                <a href="{% url src.v2.views.search_view %}?{{query_string}}&page={{num}}">{{num}}</a>
                                 </li>
-                                {% endifequal %}
+                                {% endif %}
+                                {% endfor %}
+                                
                                 {% if query_list.has_next %}
-                                <li> 
-                                <a href="{% url src.v2.views.search_view %}?{{query_string}}&page={{query_list.next_page_number}}">{{query_list.next_page_number}}</a>
-                                </li>
                                 <li>
                                 <a href="{% url src.v2.views.search_view %}?{{query_string}}&page={{query_list.next_page_number}}">&raquo;</a>
+                                </li>
+                                {% else %}
+                                <li class="disabled">
+                                <a href="#">&raquo</a>
                                 </li>
                                 {% endif %}
                             </ul>

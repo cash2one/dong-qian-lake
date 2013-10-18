@@ -10,6 +10,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout,login
 from django.forms import ModelForm
 from django import forms
+from dig_paginator import DiggPaginator
 import urllib
 
 class OverViewForm(ModelForm):
@@ -129,10 +130,8 @@ def search_view(request):
     if invest_subject:
         query_list = query_list.filter(invest_subject__contains=invest_subject)
     
-    paginator = Paginator(query_list,10)
+    paginator = DiggPaginator(query_list,10,body=5,padding=2)
     
-    print 134,paginator.page_range
-
     try:
         projects = paginator.page(page)
     except PageNotAnInteger:
@@ -189,7 +188,7 @@ def list_progress_view(request):
         p = ProjectOverView.objects.get(pk=foreign_key)
         query_list = query_list.filter(project=p)
 
-    paginator = Paginator(query_list,10)
+    paginator = DiggPaginator(query_list,10,body=5,padding=2)
 
     try:
         query_list = paginator.page(page)
