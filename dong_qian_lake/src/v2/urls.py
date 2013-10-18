@@ -19,6 +19,8 @@ urlpatterns = patterns(
         (r'^overviews/new$',add_overview_view),
         (r'^overviews/edit/(?P<id>\d+)/$',edit_overview_view),
         (r'^overviews/delete/(?P<id>\d+)/$',delete_overview_view),
+
+        (r'^flow/$',flow_view),
         
 
 

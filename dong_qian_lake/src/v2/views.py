@@ -130,6 +130,8 @@ def search_view(request):
         query_list = query_list.filter(invest_subject__contains=invest_subject)
     
     paginator = Paginator(query_list,10)
+    
+    print 134,paginator.page_range
 
     try:
         projects = paginator.page(page)
@@ -205,4 +207,15 @@ def list_progress_view(request):
     query_string = urllib.urlencode(query_dict)
 
     return manage_render_to_response(request,'list_progress.html',{'query_list':query_list,'query_string':query_string,'overview':p})
+
+@login_required
+def flow_view(request):
+    error_msg = '' 
+    if request.POST:
+        if request.POST.get('is_current',''):
+            data_dict = request.POST.dict()
+            return manage_render_to_response(request,'screenshot_flow.html',{'data':data_dict}) 
+        else:
+            error_msg = u'请选择一条纪录以表示当前进度。'
+    return manage_render_to_response(request,'flow.html',{'error':error_msg})
 

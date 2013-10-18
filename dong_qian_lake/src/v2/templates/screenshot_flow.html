@@ -1,0 +1,302 @@
+{% extends 'base.html' %}
+
+{% block custom_style %}
+<style type="text/css">
+    .table th, .table td {
+        vertical-align: middle;
+    }
+    .table thead>tr>th, .table tbody>tr>th, .table tfoot>tr>th, .table thead>tr>td, .table tbody>tr>td, .table tfoot>tr>td {
+        border-top:none;
+    }
+
+</style>
+{% endblock %}
+
+{% block custom_script %}
+<script type="text/javascript" src="/static/html2canvas.js"></script>
+<script type="text/javascript">
+    $(function(){
+            $("input:checkbox").click(function() {
+                if ($(this).is(":checked")) {
+                var group = "input:checkbox[name='" + $(this).attr("name") + "']";
+                $(group).prop("checked", false);
+                $(this).prop("checked", true);
+                $(group).each(function(){
+                    this.parentNode.parentNode.removeAttribute('class');
+                    });
+                this.parentNode.parentElement.setAttribute("class","success");
+                }
+                else {
+                $(this).prop("checked", false);
+                }
+                });
+
+            html2canvas($('.form-table'), {
+onrendered: function(canvas) {
+window.open().document.write('<img src="'+canvas.toDataURL('image/png')+'" />');
+},
+});
+
+
+});
+</script>
+
+{% endblock %}
+
+{% block header_action %}流程图{% endblock %}
+
+{% block main_content %}
+<div class="well span13 form-table">
+    <form action="" method="post" id="form1">
+        {% csrf_token %}
+        <table class="table table-hover" id="flow-table">
+            <tr>
+                <th class="span1"></th>
+                <th class="span1"></th>
+                <th class="span1">主线</th>
+                <th class="span1"></th>
+                <th class="span1"></th>
+                <th class="span1"></th>
+                <th class="">备注</th>
+            </tr>
+            <tr {% ifequal data.is_current '1' %} class="success" {% endifequal %}>
+                <td></td>
+                <td></td>
+                <td>
+                    <span class="label label-important">
+                        项目会商
+                    </span>
+                </td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>
+                    {{data.remark_1}}
+                </td>
+            </tr>
+            <tr {% ifequal data.is_current '2' %} class="success" {% endifequal %}>
+
+                <td></td>
+                <td></td>
+                <td><span class="label label-important">
+                        土地挂拍</span>
+                </td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>
+                    {{data.remark_2}}
+                </td>
+            </tr>
+            <tr {% ifequal data.is_current '3' %} class="success" {% endifequal %}>
+                <td></td>
+                <td></td>
+                <td><span class="label label-important">
+                        环评、水<br/>保、人防<br/>报告编制</span>
+                </td>
+                <td><span class="label">签订出让<br/>合同</span></td>
+                <td></td>
+                <td></td>
+                <td>
+                    {{data.remark_3}}
+                </td>
+
+            </tr>
+            <tr {% ifequal data.is_current '4' %} class="success" {% endifequal %}>
+                <td></td>
+                <td></td>
+
+                <td><span class="label label-important">
+                        环评、水<br/>保、人防<br/>批复</span></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>
+                    {{data.remark_4}}
+                </td>
+
+            </tr>
+            <tr {% ifequal data.is_current '5' %} class="success" {% endifequal %}>
+                <td></td>
+                <td></td>
+
+                <td><span class="label label-important">建筑方案<br/>设计</span></td>
+                <td><span class="label">申请规划<br/>用地许可<br/>证</span></td>
+                <td><span class="label">办理土地<br/>证</span></td>
+                <td></td>
+                <td>
+                    {{data.remark_5}}
+                </td>
+
+            </tr>
+            <tr {% ifequal data.is_current '6' %} class="success" {% endifequal %}>
+                <td></td>
+                <td></td>
+
+                <td><span class="label label-important">方案公示<br/>及批复</span></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>
+                    {{data.remark_6}}
+                </td>
+
+            </tr>
+            <tr {% ifequal data.is_current '7' %} class="success" {% endifequal %}>
+                <td></td>
+                <td></td>
+
+                <td><span class="label label-important">扩初设计</span></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>
+                    {{data.remark_7}}
+                </td>
+
+            </tr>
+            <tr {% ifequal data.is_current '8' %} class="success" {% endifequal %}>
+                <td></td>
+                <td></td>
+
+                <td><span class="label label-important">施工图设<br/>计</span></td>
+                <td><span class="label">扩初会审</span></td>
+                <td><span class="label">可再生能<br/>源评估</span></td>
+                <td></td>
+                <td>
+                    {{data.remark_8}}
+                </td>
+
+            </tr>
+            <tr {% ifequal data.is_current '9' %} class="success" {% endifequal %}>
+                <td></td>
+                <td><span class="label">人工施工<br/>图审查</span></td>
+                <td><span class="label label-important">施工图审<br/>查</span></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>
+                    {{data.remark_9}}
+                </td>
+
+            </tr>
+            <tr {% ifequal data.is_current '10' %} class="success" {% endifequal %}>
+                <td><span class="label">编制工程<br/>量清单，<br/>确定监理<br/>和施工招<br/>投标文件</span></td>
+                <td><span class="label">人防设计<br/>审批</span></td>
+                <td><span class="label label-important">日照分析<br/>报告</span></td>
+                <td><span class="label">经济技术<br/>指标复核</span></td>
+                <td><span class="label">交警批复</span></td>
+                <td><span class="label">防雷设计<br/>审批</span></td>
+                <td >
+                    {{data.remark_10}}
+                </td>
+
+            </tr>
+            <tr {% ifequal data.is_current '11' %} class="success" {% endifequal %}>
+                <td></td>
+                <td></td>
+
+                <td><span class="label label-important">规划放险<br/>线</span></td>
+                <td><span class="label">白蚁防治<br/>费和墙改<br/>基金</span></td>
+                <td></td>
+                <td></td>
+                <td>
+                    {{data.remark_11}}
+                </td>
+
+            </tr>
+            <tr {% ifequal data.is_current '12' %} class="success" {% endifequal %}>
+                <td></td>
+                <td></td>
+
+                <td><span class="label label-important">申请规划<br/>许可证</span></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>
+                    {{data.remark_12}}
+                </td>
+
+            </tr>
+            <tr {% ifequal data.is_current '13' %} class="success" {% endifequal %}>
+                <td></td>
+                <td></td>
+
+                <td><span class="label label-important">监理施工<br/>招投标</span></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>
+                    {{data.remark_13}}
+                </td>
+
+            </tr>
+            <tr {% ifequal data.is_current '14' %} class="success" {% endifequal %}>
+                <td></td>
+                <td></td>
+
+                <td><span class="label label-important">合同备案</span></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>
+                    {{data.remark_14}}
+                </td>
+
+            </tr>
+            <tr {% ifequal data.is_current '15' %} class="success" {% endifequal %}>
+
+                <td></td>
+                <td></td>
+
+                <td><span class="label label-important">消防及质<br/>安监备案</span></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>
+                    {{data.remark_15}}
+                </td>
+            </tr>
+            <tr {% ifequal data.is_current '16' %} class="success" {% endifequal %}>
+                <td></td>
+                <td></td>
+
+                <td><span class="label label-important">申请施工<br/>许可证</span></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>
+                    {{data.remark_16}}
+                </td>
+
+            </tr>
+            <tr {% ifequal data.is_current '17' %} class="success" {% endifequal %}>
+                <td></td>
+                <td></td>
+
+                <td><span class="label label-important">施工准备</span></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>
+                    {{data.remark_17}}
+                </td>
+
+            </tr>
+            <tr {% ifequal data.is_current '18' %} class="success" {% endifequal %}>
+                <td></td>
+                <td></td>
+
+                <td><span class="label label-important">打桩</span></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>
+                    {{data.remark_18}}
+                </td>
+
+            </tr>
+        </table>
+    </form>
+</div>
+{% endblock %}

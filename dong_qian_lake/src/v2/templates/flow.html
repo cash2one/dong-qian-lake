@@ -1,0 +1,357 @@
+{% extends 'base.html' %}
+
+{% block custom_style %}
+<style type="text/css">
+    .table th, .table td {
+        vertical-align: middle;
+    }
+    /*
+    .form-table {
+        height:550px;
+        overflow: auto;
+        position: relative;
+
+    }*/
+    .table thead>tr>th, .table tbody>tr>th, .table tfoot>tr>th, .table thead>tr>td, .table tbody>tr>td, .table tfoot>tr>td {
+        border-top:none;
+    }
+
+</style>
+{% endblock %}
+
+{% block custom_script %}
+<script type="text/javascript" src="/static/html2canvas.js"></script>
+<script type="text/javascript">
+    $(function(){
+            $("input:checkbox").click(function() {
+                if ($(this).is(":checked")) {
+                    var group = "input:checkbox[name='" + $(this).attr("name") + "']";
+                    $(group).prop("checked", false);
+                    $(this).prop("checked", true);
+                    $(group).each(function(){
+                        this.parentNode.parentNode.removeAttribute('class');
+                        });
+                    this.parentNode.parentElement.setAttribute("class","success");
+                }
+                else {
+                    $(this).prop("checked", false);
+                }
+            });
+
+        });
+</script>
+
+{% endblock %}
+
+{% block header_action %}项目开始前流程图生成{% endblock %}
+
+{% block main_content %}
+<div class="well span13 form-table">
+    {% if error %}
+<div class="alert alert-error">
+  <button type="button" class="close" data-dismiss="alert">&times;</button>
+  <strong>警告!</strong> {{error}}
+</div>
+    
+    {% endif %}
+
+    <form action="" method="post" id="form1">
+        {% csrf_token %}
+        <table class="table table-hover" id="flow-table">
+            <tr>
+                <th class="span1">#</th>
+                <th class="span2">备注</th>
+                <th class="span2"></th>
+                <th class="span2"></th>
+                <th class="span2"></th>
+                <th class="span2">主线</th>
+                <th class="span2"></th>
+                <th class="span2"></th>
+                <th class="span2"></th>
+            </tr>
+            <tr>
+                <td class="span1">
+                    <input type="checkbox" class="radio" value="1" name="is_current" />
+                </td>
+                <td>
+                    <input type="text" name="remark_1" />
+                </td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>
+                    <span class="label label-important">
+                        项目会商
+                    </span>
+                </td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td class="span1">
+                    <input type="checkbox" class="radio" value="2" name="is_current" />
+                </td>
+                <td>
+                    <input type="text" name="remark_2" />
+                </td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td><span class="label label-important">
+                        土地挂拍</span>
+                </td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td class="span1">
+                    <input type="checkbox" class="radio" value="3" name="is_current" />
+                </td>
+                <td><input type="text" name="remark_3" />
+                </td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td><span class="label label-important">
+                        环评、水保、<br/>人防报告编制</span>
+                </td>
+                <td><span class="label">签订出让合同</span></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td class="span1">
+                    <input type="checkbox" class="radio" value="4" name="is_current" />
+                </td>
+                <td><input type="text" name="remark_4" />
+                </td>
+                <td></td>
+                <td></td>
+                <td></td>
+
+                <td><span class="label label-important">
+                        环评、水保、<br/>人防批复</span></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td class="span1">
+                    <input type="checkbox" class="radio" value="5" name="is_current" />
+                </td>
+                <td><input type="text" name="remark_5" />
+                </td>
+                <td></td>
+                <td></td>
+                <td></td>
+
+                <td><span class="label label-important">建筑方案设计</span></td>
+                <td><span class="label">申请规划用地<br/>许可证</span></td>
+                <td><span class="label">办理土地证</span></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td class="span1">
+                    <input type="checkbox" class="radio" value="6" name="is_current" />
+                </td>
+                <td><input type="text" name="remark_6" />
+                </td>
+                <td></td>
+                <td></td>
+                <td></td>
+
+                <td><span class="label label-important">方案公示及批<br/>复</span></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td class="span1">
+                    <input type="checkbox" class="radio" value="7" name="is_current" />
+                </td>
+                <td><input type="text" name="remark_7" />
+                </td>
+                <td></td>
+                <td></td>
+                <td></td>
+
+                <td><span class="label label-important">扩初设计</span></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td class="span1">
+                    <input type="checkbox" class="radio" value="8" name="is_current" />
+                </td>
+                <td><input type="text" name="remark_8" />
+                </td>
+                <td></td>
+                <td></td>
+                <td></td>
+
+                <td><span class="label label-important">施工图设计</span></td>
+                <td><span class="label">扩初会审</span></td>
+                <td><span class="label">可再生能源评<br/>估</span></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td class="span1">
+                    <input type="checkbox" class="radio" value="9" name="is_current" />
+                </td>
+                <td><input type="text" name="remark_9" />
+                </td>
+                <td></td>
+                <td></td>
+                <td><span class="label">人工施工图审<br/>查</span></td>
+                <td><span class="label label-important">施工图审查</span></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td class="span1">
+                    <input type="checkbox" class="radio" value="10" name="is_current" />
+                </td>
+                <td><input type="text" name="remark_10" />
+                </td>
+                <td></td>
+                <td class="span2"><span class="label">编制工程量清<br/>单，确定监理<br/>和施工招投标<br/>文件</span></td>
+                <td><span class="label">人防设计审批</span></td>
+                <td><span class="label label-important">日照分析报告</span></td>
+                <td><span class="label">经济技术指标<br/>复核</span></td>
+                <td><span class="label">交警批复</span></td>
+                <td><span class="label">防雷设计审批</span></td>
+            </tr>
+            <tr>
+                <td class="span1">
+                    <input type="checkbox" class="radio" value="11" name="is_current" />
+                </td>
+                <td><input type="text" name="remark_11" />
+                </td>
+                <td class="span2"></td>
+                <td></td>
+                <td></td>
+
+                <td><span class="label label-important">规划放险线</span></td>
+                <td><span class="label">白蚁防治费和<br/>墙改基金</span></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td class="span1">
+                    <input type="checkbox" class="radio" value="12" name="is_current" />
+                </td>
+                <td><input type="text" name="remark_12" />
+                </td>
+                <td></td>
+                <td></td>
+                <td></td>
+
+                <td><span class="label label-important">申请规划许可<br/>证</span></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td class="span1">
+                    <input type="checkbox" class="radio" value="13" name="is_current" />
+                </td>
+                <td><input type="text" name="remark_13" />
+                </td>
+                <td></td>
+                <td></td>
+                <td></td>
+
+                <td><span class="label label-important">监理施工招投<br/>标</span></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td class="span1">
+                    <input type="checkbox" class="radio" value="14" name="is_current" />
+                </td>
+                <td><input type="text" name="remark_14" />
+                </td>
+                <td></td>
+                <td></td>
+                <td></td>
+
+                <td><span class="label label-important">合同备案</span></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td class="span1">
+                    <input type="checkbox" class="radio" value="15" name="is_current" />
+                </td>
+                <td><input type="text" name="remark_15" />
+                </td>
+                <td></td>
+                <td></td>
+                <td></td>
+
+                <td><span class="label label-important">消防及质安监<br/>备案</span></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td class="span1">
+                    <input type="checkbox" class="radio" value="16" name="is_current" />
+                </td>
+                <td><input type="text" name="remark_16" />
+                </td>
+                <td></td>
+                <td></td>
+                <td></td>
+
+                <td><span class="label label-important">申请施工许可<br/>证</span></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td class="span1">
+                    <input type="checkbox" class="radio" value="17" name="is_current" />
+                </td>
+                <td><input type="text" name="remark_17" />
+                </td>
+                <td></td>
+                <td></td>
+                <td></td>
+
+                <td><span class="label label-important">施工准备</span></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td class="span1">
+                    <input type="checkbox" class="radio" value="18" name="is_current" />
+                </td>
+                <td><input type="text" name="remark_18" />
+                </td>
+                <td></td>
+                <td></td>
+                <td></td>
+
+                <td><span class="label label-important">打桩</span></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <input form="form1" type="submit" name="submit" value="提交" class="btn btn-default btn-primary" />
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+{% endblock %}
