@@ -14,3 +14,11 @@
 {% block breadcrumb_other %}
 新增项目进度
 {% endblock %}
+
+{% block add_other %}
+<input class="btn btn-inverse" type="submit" name="add_other" value="保存并增加另一个"/>
+{% endblock %}
+
+{% block form_message %}
+新项目进度：{{instance.name}} 保存成功。
+{% endblock %}

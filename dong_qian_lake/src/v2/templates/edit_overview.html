@@ -18,3 +18,11 @@
 {% block delete_button%}
 <a href="{% url src.v2.views.delete_overview_view id %}" class="btn btn-danger">删除</a>
 {% endblock %}
+
+{% block add_other %}
+<input class="btn btn-inverse" type="submit" name="add_other" value="保存并增加另一个"/>
+{% endblock %}
+
+{% block form_message %}
+新项目概况：{{instance.project_name}} 保存成功。
+{% endblock %}

@@ -32,10 +32,29 @@
                 });
 
             html2canvas($('.form-table'), {
-onrendered: function(canvas) {
-window.open().document.write('<img src="'+canvas.toDataURL('image/png')+'" />');
-},
-});
+                onrendered: function(canvas) {
+                var dataURL = canvas.toDataURL('image/png');
+                //window.open().document.write('<img src="'+canvas.toDataURL('image/png')+'" />');
+                dataURL = dataURL.replace("image/png", "image/octet-stream");
+                
+                $.post('/v2/generate/',{attachement:dataURL},function(data){
+                        //$("body").append("<iframe src='/v2/generate/' style='display: none;' ></iframe>");
+                        //window.open(data);
+                        $(".form-table").attr('class','hidden');
+                        $(".download").attr('class','download alert alert-success');
+                        $('.download').append('<p>图片生成成功，<br/>请点击 <a href="/d-media/output.png" download="download.png"><b>这里</b></a> 下载文件。</p>');
+                        });
+                
+                // not work in IE
+                //window.location.href = dataURL;
+                //document.location.href = dataURL;
+
+                //var link = document.createElement('a');
+                //link.download = '流程图.png'
+                //link.href = dataURL;
+                //link.click();
+                },
+            });
 
 
 });
@@ -299,4 +318,5 @@ window.open().document.write('<img src="'+canvas.toDataURL('image/png')+'" />');
         </table>
     </form>
 </div>
+<div class="download"></div>
 {% endblock %}

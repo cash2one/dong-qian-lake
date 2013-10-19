@@ -19,3 +19,7 @@
 {% block delete_button%}
 <a href="{% url src.v2.views.delete_progress_view id %}" class="btn btn-danger">删除</a>
 {% endblock %}
+
+{% block form_message %}
+项目进度：{{instance.name}} 保存成功。
+{% endblock %}

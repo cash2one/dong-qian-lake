@@ -51,6 +51,29 @@
 {% block header_title %} 项目概况查询 {% endblock %}
 {% block main_content %}
 <div class="container well">
+    {% if info %}
+    
+    <div class="alert">
+        {% ifequal info.object 'progress' %}
+        项目进度：
+        {% else %}
+        项目概况：
+        {% endifequal %}
+        {{info.name}}
+        {% ifequal info.action 'add' %}
+        已保存。
+        {% endifequal %}
+        {% ifequal info.action 'update' %}
+        已修改。
+        {% endifequal %}
+        {% ifequal info.action 'delete' %}
+        已删除。
+        {% endifequal %}
+
+
+    </div>
+
+    {% endif %}
     <div class="container-fluid">
         <div class="row-fluid">
             <div class="span3 ">

@@ -21,6 +21,7 @@ urlpatterns = patterns(
         (r'^overviews/delete/(?P<id>\d+)/$',delete_overview_view),
 
         (r'^flow/$',flow_view),
+        (r'^generate/$',generate_view),
         
 
 

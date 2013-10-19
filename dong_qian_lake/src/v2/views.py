@@ -12,6 +12,10 @@ from django.forms import ModelForm
 from django import forms
 from dig_paginator import DiggPaginator
 import urllib
+from django.views.decorators.csrf import csrf_exempt
+import re
+import os
+from dong_qian_lake.settings import STATIC_ROOT,MEDIA_ROOT
 
 class OverViewForm(ModelForm):
     
@@ -44,7 +48,11 @@ def add_progress_view(request):
     if request.POST:
         f = ProgressForm(request.POST,request.FILES)
         if f.is_valid():
-            f.save()
+            instance = f.save()
+            request.session['object'] = {'name':instance.name,'object':'progress','action':'add'} 
+            if request.POST.get('add_other',''):
+                f = ProgressForm()
+                return manage_render_to_response(request,'new_progress.html',{'form':f,'instance':instance})
             return redirect(search_view)
 
     return manage_render_to_response(request,'new_progress.html',{'form':f})
@@ -57,7 +65,8 @@ def edit_progress_view(request,id):
     if request.POST:
         f = ProgressForm(request.POST,request.FILES,instance=p)
         if f.is_valid():
-            f.save()
+            instance = f.save()
+            request.session['object'] = {'name':instance.name,'object':'progress','action':'update'} 
             return redirect(search_view)
     return manage_render_to_response(request,'edit_progress.html',{'form':f,'id':id})
 
@@ -65,6 +74,7 @@ def edit_progress_view(request,id):
 def delete_progress_view(request,id):
     p = ProjectProgress.objects.get(pk=id)
     p.delete()
+    request.session['object'] = {'name':p.name,'object':'progress','action':'delete'} 
     return redirect(search_view)
 
 @login_required
@@ -75,7 +85,11 @@ def add_overview_view(request):
         f = OverViewForm(request.POST)
 
         if f.is_valid():
-            f.save()
+            instance = f.save()
+            request.session['object'] = {'name':instance.project_name,'object':'overview','action':'add'} 
+            if request.POST.get('add_other',''):
+                f = OverViewForm()
+                return manage_render_to_response(request,'new_overview.html',{'form':f,'instance':instance})
             return redirect(search_view)
     return manage_render_to_response(request,'new_overview.html',{'form':f})
 
@@ -87,7 +101,8 @@ def edit_overview_view(request,id):
     if request.POST:
         f = OverViewForm(request.POST,instance=o)
         if f.is_valid():
-            f.save()
+            instance = f.save()
+            request.session['object'] = {'name':instance.project_name,'object':'overview','action':'update'} 
             return redirect(search_view)
     return manage_render_to_response(request,'edit_overview.html',{'form':f,'id':id})
 
@@ -95,6 +110,7 @@ def edit_overview_view(request,id):
 def delete_overview_view(request,id):
     o  = ProjectOverView.objects.get(pk=id)
     o.delete()
+    request.session['object'] = {'name':o.project_name,'object':'overview','action':'delete'} 
     return redirect(search_view)
 
 def test_view(request):
@@ -154,7 +170,12 @@ def search_view(request):
     query_string = urllib.urlencode(query_dict)
 
     user = request.user
-    return my_render_to_response(request,'search.html',{'query_list':projects,'year_list':year_list,'query_string':query_string,'user':user})
+    info = {}
+    if request.session.get('object',''):
+        info = request.session['object']
+        del request.session['object']
+
+    return my_render_to_response(request,'search.html',{'query_list':projects,'year_list':year_list,'query_string':query_string,'user':user,'info':info})
 
 def my_render_to_response(request,template,data_dict={}):
     return render_to_response(template,data_dict,context_instance=RequestContext(request))
@@ -218,3 +239,32 @@ def flow_view(request):
             error_msg = u'请选择一条纪录以表示当前进度。'
     return manage_render_to_response(request,'flow.html',{'error':error_msg})
 
+def readFile(fn, buf_size=262144):
+    f = open(fn, "rb")
+    while True:
+        c = f.read(buf_size)
+        if c:
+            yield c
+        else:
+            break
+    f.close()
+
+
+@login_required
+@csrf_exempt
+def generate_view(request):
+    if request.POST:
+        data_url = request.POST.get('attachement','')
+        file_path = os.path.join(MEDIA_ROOT,'output.png')
+        img_str = re.search(r'base64,(.*)', data_url).group(1)
+        output = open(file_path, 'wb')
+        output.write(img_str.decode('base64'))
+        output.close()
+
+        response = HttpResponse(readFile(file_path),content_type='image/png')
+        response['Content-Length'] = os.path.getsize(file_path)
+        response['Content-Type'] = 'image/png'
+        response['Content-Disposition'] = 'attachment; filename="flow.png"'
+        return response
+#        return HttpResponse(data_url)
+    return HttpResponse('error.')
