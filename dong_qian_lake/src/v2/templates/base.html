@@ -64,17 +64,19 @@ background-color:#fff;
                 <a href="{% url src.v2.views.logout_view %}" class="navbar-link">注销</a>
                 </p>
                 {% endblock %}
-<!--                <ul class="nav">-->
-<!--                    <li class="active">-->
-<!--                    <a href="{% url src.v2.views.search_view %}">首页</a>-->
-<!--                    </li>-->
+                <ul class="nav">
+                    {%if user.is_staff%}
+                    <li class="">
+                    <a href="{% url src.v2.views.flow_view %}">流程图</a>
+                    </li>
+                    {% endif %}
 <!--                    <li>-->
 <!--                    <a href="#">关于</a>-->
 <!--                    </li>-->
 <!--                    <li>-->
 <!--                    <a href="#">联系我们</a>-->
 <!--                    </li>-->
-<!--                </ul>-->
+                </ul>
             </div><!--/.nav-collapse-->
         </div>
     </div>
