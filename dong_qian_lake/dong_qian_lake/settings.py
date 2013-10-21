@@ -1,6 +1,6 @@
 # Django settings for dong_qian_lake project.
 import os
-import dj_database_url
+#import dj_database_url
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG

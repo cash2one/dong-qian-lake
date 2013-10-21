@@ -1,0 +1,64 @@
+[Mon Oct 21 21:21:23 2013] [error] [client 127.0.0.1] mod_wsgi (pid=1312): Target WSGI script 'C:/dong-qian-lake/dong_qian_lake/dong_qian_lake/wsgi.py' cannot be loaded as Python module.
+[Mon Oct 21 21:21:23 2013] [error] [client 127.0.0.1] mod_wsgi (pid=1312): Exception occurred processing WSGI script 'C:/dong-qian-lake/dong_qian_lake/dong_qian_lake/wsgi.py'.
+[Mon Oct 21 21:21:23 2013] [error] [client 127.0.0.1] Traceback (most recent call last):
+[Mon Oct 21 21:21:23 2013] [error] [client 127.0.0.1]   File "C:/dong-qian-lake/dong_qian_lake/dong_qian_lake/wsgi.py", line 23, in <module>
+[Mon Oct 21 21:21:23 2013] [error] [client 127.0.0.1]     from django.core.wsgi import get_wsgi_application
+[Mon Oct 21 21:21:23 2013] [error] [client 127.0.0.1] ImportError: No module named django.core.wsgi
+[Mon Oct 21 21:47:01 2013] [error] [client 127.0.0.1] mod_wsgi (pid=1312): Target WSGI script 'C:/dong-qian-lake/dong_qian_lake/dong_qian_lake/wsgi.py' cannot be loaded as Python module.
+[Mon Oct 21 21:47:01 2013] [error] [client 127.0.0.1] mod_wsgi (pid=1312): Exception occurred processing WSGI script 'C:/dong-qian-lake/dong_qian_lake/dong_qian_lake/wsgi.py'.
+[Mon Oct 21 21:47:01 2013] [error] [client 127.0.0.1] Traceback (most recent call last):
+[Mon Oct 21 21:47:01 2013] [error] [client 127.0.0.1]   File "C:/dong-qian-lake/dong_qian_lake/dong_qian_lake/wsgi.py", line 23, in <module>
+[Mon Oct 21 21:47:01 2013] [error] [client 127.0.0.1]     from django.core.wsgi import get_wsgi_application
+[Mon Oct 21 21:47:01 2013] [error] [client 127.0.0.1] ImportError: No module named django.core.wsgi
+[Mon Oct 21 21:51:47 2013] [error] [client 127.0.0.1] mod_wsgi (pid=1420): Exception occurred processing WSGI script 'C:/dong-qian-lake/dong_qian_lake/dong_qian_lake/wsgi.py'.
+[Mon Oct 21 21:51:47 2013] [error] [client 127.0.0.1] Traceback (most recent call last):
+[Mon Oct 21 21:51:47 2013] [error] [client 127.0.0.1]   File "C:\\Python27\\lib\\site-packages\\django-1.4.6-py2.7.egg\\django\\core\\handlers\\wsgi.py", line 219, in __call__
+[Mon Oct 21 21:51:47 2013] [error] [client 127.0.0.1]     self.load_middleware()
+[Mon Oct 21 21:51:47 2013] [error] [client 127.0.0.1]   File "C:\\Python27\\lib\\site-packages\\django-1.4.6-py2.7.egg\\django\\core\\handlers\\base.py", line 39, in load_middleware
+[Mon Oct 21 21:51:47 2013] [error] [client 127.0.0.1]     for middleware_path in settings.MIDDLEWARE_CLASSES:
+[Mon Oct 21 21:51:47 2013] [error] [client 127.0.0.1]   File "C:\\Python27\\lib\\site-packages\\django-1.4.6-py2.7.egg\\django\\utils\\functional.py", line 184, in inner
+[Mon Oct 21 21:51:47 2013] [error] [client 127.0.0.1]     self._setup()
+[Mon Oct 21 21:51:47 2013] [error] [client 127.0.0.1]   File "C:\\Python27\\lib\\site-packages\\django-1.4.6-py2.7.egg\\django\\conf\\__init__.py", line 42, in _setup
+[Mon Oct 21 21:51:47 2013] [error] [client 127.0.0.1]     self._wrapped = Settings(settings_module)
+[Mon Oct 21 21:51:47 2013] [error] [client 127.0.0.1]   File "C:\\Python27\\lib\\site-packages\\django-1.4.6-py2.7.egg\\django\\conf\\__init__.py", line 95, in __init__
+[Mon Oct 21 21:51:47 2013] [error] [client 127.0.0.1]     raise ImportError("Could not import settings '%s' (Is it on sys.path?): %s" % (self.SETTINGS_MODULE, e))
+[Mon Oct 21 21:51:47 2013] [error] [client 127.0.0.1] ImportError: Could not import settings 'dong_qian_lake.settings' (Is it on sys.path?): No module named dong_qian_lake.settings
+[Mon Oct 21 21:56:43 2013] [error] [client 127.0.0.1] mod_wsgi (pid=1420): Exception occurred processing WSGI script 'C:/dong-qian-lake/dong_qian_lake/dong_qian_lake/wsgi.py'.
+[Mon Oct 21 21:56:43 2013] [error] [client 127.0.0.1] Traceback (most recent call last):
+[Mon Oct 21 21:56:43 2013] [error] [client 127.0.0.1]   File "C:\\Python27\\lib\\site-packages\\django-1.4.6-py2.7.egg\\django\\core\\handlers\\wsgi.py", line 219, in __call__
+[Mon Oct 21 21:56:43 2013] [error] [client 127.0.0.1]     self.load_middleware()
+[Mon Oct 21 21:56:43 2013] [error] [client 127.0.0.1]   File "C:\\Python27\\lib\\site-packages\\django-1.4.6-py2.7.egg\\django\\core\\handlers\\base.py", line 39, in load_middleware
+[Mon Oct 21 21:56:43 2013] [error] [client 127.0.0.1]     for middleware_path in settings.MIDDLEWARE_CLASSES:
+[Mon Oct 21 21:56:43 2013] [error] [client 127.0.0.1]   File "C:\\Python27\\lib\\site-packages\\django-1.4.6-py2.7.egg\\django\\utils\\functional.py", line 184, in inner
+[Mon Oct 21 21:56:43 2013] [error] [client 127.0.0.1]     self._setup()
+[Mon Oct 21 21:56:43 2013] [error] [client 127.0.0.1]   File "C:\\Python27\\lib\\site-packages\\django-1.4.6-py2.7.egg\\django\\conf\\__init__.py", line 42, in _setup
+[Mon Oct 21 21:56:43 2013] [error] [client 127.0.0.1]     self._wrapped = Settings(settings_module)
+[Mon Oct 21 21:56:43 2013] [error] [client 127.0.0.1]   File "C:\\Python27\\lib\\site-packages\\django-1.4.6-py2.7.egg\\django\\conf\\__init__.py", line 95, in __init__
+[Mon Oct 21 21:56:43 2013] [error] [client 127.0.0.1]     raise ImportError("Could not import settings '%s' (Is it on sys.path?): %s" % (self.SETTINGS_MODULE, e))
+[Mon Oct 21 21:56:43 2013] [error] [client 127.0.0.1] ImportError: Could not import settings 'dong_qian_lake.settings' (Is it on sys.path?): No module named dong_qian_lake.settings
+[Mon Oct 21 21:56:49 2013] [error] [client 127.0.0.1] mod_wsgi (pid=1420): Exception occurred processing WSGI script 'C:/dong-qian-lake/dong_qian_lake/dong_qian_lake/wsgi.py'.
+[Mon Oct 21 21:56:49 2013] [error] [client 127.0.0.1] Traceback (most recent call last):
+[Mon Oct 21 21:56:49 2013] [error] [client 127.0.0.1]   File "C:\\Python27\\lib\\site-packages\\django-1.4.6-py2.7.egg\\django\\core\\handlers\\wsgi.py", line 219, in __call__
+[Mon Oct 21 21:56:49 2013] [error] [client 127.0.0.1]     self.load_middleware()
+[Mon Oct 21 21:56:49 2013] [error] [client 127.0.0.1]   File "C:\\Python27\\lib\\site-packages\\django-1.4.6-py2.7.egg\\django\\core\\handlers\\base.py", line 39, in load_middleware
+[Mon Oct 21 21:56:49 2013] [error] [client 127.0.0.1]     for middleware_path in settings.MIDDLEWARE_CLASSES:
+[Mon Oct 21 21:56:49 2013] [error] [client 127.0.0.1]   File "C:\\Python27\\lib\\site-packages\\django-1.4.6-py2.7.egg\\django\\utils\\functional.py", line 184, in inner
+[Mon Oct 21 21:56:49 2013] [error] [client 127.0.0.1]     self._setup()
+[Mon Oct 21 21:56:49 2013] [error] [client 127.0.0.1]   File "C:\\Python27\\lib\\site-packages\\django-1.4.6-py2.7.egg\\django\\conf\\__init__.py", line 42, in _setup
+[Mon Oct 21 21:56:49 2013] [error] [client 127.0.0.1]     self._wrapped = Settings(settings_module)
+[Mon Oct 21 21:56:49 2013] [error] [client 127.0.0.1]   File "C:\\Python27\\lib\\site-packages\\django-1.4.6-py2.7.egg\\django\\conf\\__init__.py", line 95, in __init__
+[Mon Oct 21 21:56:49 2013] [error] [client 127.0.0.1]     raise ImportError("Could not import settings '%s' (Is it on sys.path?): %s" % (self.SETTINGS_MODULE, e))
+[Mon Oct 21 21:56:49 2013] [error] [client 127.0.0.1] ImportError: Could not import settings 'dong_qian_lake.settings' (Is it on sys.path?): No module named dong_qian_lake.settings
+[Mon Oct 21 21:57:40 2013] [error] [client 127.0.0.1] mod_wsgi (pid=6420): Exception occurred processing WSGI script 'C:/dong-qian-lake/dong_qian_lake/dong_qian_lake/wsgi.py'.
+[Mon Oct 21 21:57:40 2013] [error] [client 127.0.0.1] Traceback (most recent call last):
+[Mon Oct 21 21:57:40 2013] [error] [client 127.0.0.1]   File "C:\\Python27\\lib\\site-packages\\django-1.4.6-py2.7.egg\\django\\core\\handlers\\wsgi.py", line 219, in __call__
+[Mon Oct 21 21:57:40 2013] [error] [client 127.0.0.1]     self.load_middleware()
+[Mon Oct 21 21:57:40 2013] [error] [client 127.0.0.1]   File "C:\\Python27\\lib\\site-packages\\django-1.4.6-py2.7.egg\\django\\core\\handlers\\base.py", line 39, in load_middleware
+[Mon Oct 21 21:57:40 2013] [error] [client 127.0.0.1]     for middleware_path in settings.MIDDLEWARE_CLASSES:
+[Mon Oct 21 21:57:40 2013] [error] [client 127.0.0.1]   File "C:\\Python27\\lib\\site-packages\\django-1.4.6-py2.7.egg\\django\\utils\\functional.py", line 184, in inner
+[Mon Oct 21 21:57:40 2013] [error] [client 127.0.0.1]     self._setup()
+[Mon Oct 21 21:57:40 2013] [error] [client 127.0.0.1]   File "C:\\Python27\\lib\\site-packages\\django-1.4.6-py2.7.egg\\django\\conf\\__init__.py", line 42, in _setup
+[Mon Oct 21 21:57:40 2013] [error] [client 127.0.0.1]     self._wrapped = Settings(settings_module)
+[Mon Oct 21 21:57:40 2013] [error] [client 127.0.0.1]   File "C:\\Python27\\lib\\site-packages\\django-1.4.6-py2.7.egg\\django\\conf\\__init__.py", line 95, in __init__
+[Mon Oct 21 21:57:40 2013] [error] [client 127.0.0.1]     raise ImportError("Could not import settings '%s' (Is it on sys.path?): %s" % (self.SETTINGS_MODULE, e))
+[Mon Oct 21 21:57:40 2013] [error] [client 127.0.0.1] ImportError: Could not import settings 'dong_qian_lake.settings' (Is it on sys.path?): No module named dong_qian_lake.settings
